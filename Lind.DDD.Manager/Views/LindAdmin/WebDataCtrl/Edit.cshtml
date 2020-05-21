@@ -1,0 +1,6 @@
+﻿@model WebDataCtrl
+
+@{
+    ViewBag.Title = "编辑数据集类型";
+}
+@Html.BindToForm(Model, i => i.DataCtrlName, i => i.DataCtrlType, i => i.DataCtrlField, i => i.DataCtrlApi, i => i.Description)

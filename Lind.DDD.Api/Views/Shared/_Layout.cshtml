@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/async.js"></script>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="/content/highlights/src/shCore.js"></script>
+    <script type="text/javascript" src="/content/highlights/scripts/shBrushCSharp.js"></script>
+    <link type="text/css" rel="stylesheet" href="/content/highlights/styles/shCoreDefault.css" />
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    <style type="text/css">
+        .banner {
+            list-style-type: none;
+            font-size: 16px;
+            font-family: "微软雅黑";
+            font-weight: bold;
+            padding: 10px;
+        }
+
+            .banner li {
+                float: left;
+                padding: 10px;
+            }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div style="border-bottom: 1px #000 dashed;">
+        <ul class="banner">
+            <li><a href="/api/Restful">接口Get</a></li>
+            <li><a href="/api/Restful/1">接口Get重载</a></li>
+            <li><a href="/TestRestful">测试接口</a></li>
+            <li><a href="/About/MD5">加密原则</a></li>
+            <li><a href="/About/KV">由k/v生成Url</a></li>
+            <li><a href="/About/HttpHelper">Http方法扩展</a></li>
+            <li><a href="/About/Cors">跨域过滤器</a></li>
+            <li><a href="/About/Authority">授权过滤器</a></li>
+            <li><a href="/TestRestful/upload">文件上传</a></li>
+        </ul>
+    </div>
+    <div class="clear" style="padding: 20px;">
+        @RenderBody()
+    </div>
+</body>
+</html>

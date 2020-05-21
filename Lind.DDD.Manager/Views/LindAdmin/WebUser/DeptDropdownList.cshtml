@@ -1,0 +1,190 @@
+﻿@model IEnumerable<WebDepartments>
+@{
+    Layout = null;
+    var deptList = ViewBag.DeptList as IEnumerable<WebDepartments>;
+    var roleList = ViewBag.RoleList as IEnumerable<WebManageRoles>;
+}
+<style type="text/css">
+    .currentBlock {
+        margin-left: 5px;
+    }
+</style>
+<div class="form-group">
+    <label class="col-sm-2">部门</label>
+    <div class="col-sm-10">@Html.Raw(ViewBag.Dept)</div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2">角色</label>
+    <div class="col-sm-10" id="roleList">
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+        <input type="button" value="添加到选择项" name="add" class="btn btn-default" />
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2">选中的部门</label>
+    <div class="col-sm-10">
+        <p class="form-control-static" id="selectedDept">
+            @if (deptList != null && deptList.Count() > 0)
+            {
+                foreach (var dept in deptList)
+                {
+                <span class="currentBlock">
+                    <span class="btn btn-success">@dept.Name&nbsp;&nbsp;<b class="badge">x</b></span>
+                    <input type='hidden' name='selDept' value='@dept.Id'/>
+                </span>
+                }
+            }
+        </p>
+
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2">选中的角色</label>
+    <div class="col-sm-10">
+        <p class="form-control-static" id="selectedRole">
+            @if (roleList != null && roleList.Count() > 0)
+            {
+                foreach (var role in roleList)
+                {
+                <span class="currentBlock">
+                    <span class="btn btn-success">@role.RoleName&nbsp;&nbsp;<b class="badge">x</b></span>
+                    <input type='hidden' name='selRole' value='@role.Id'/>
+                </span>
+                }
+            }
+
+        </p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("input[name=add]").click(function () {
+            var selDept = "";
+            var selDeptVal = "";
+            var selRole = "";
+            var selRoleVal = "";
+            if ($("select[name=Sub]").val() == undefined || $("select[name=Sub]").val() == '') {
+                selDept = $("select[name=Parent] option:selected").text();
+                selDeptVal = $("select[name=Parent]").val();
+            }
+            else {
+                var obj = $("select[name=Sub] option:selected");
+                $.each(obj, function (i, o) {
+                    if ($(o).val() != '') {
+                        selDept = $(o).text();
+                        selDeptVal = $(o).val();
+
+                    }
+                });
+            }
+
+            //禁止添加重复的部门
+            var selectedDept = [];
+            $.each($("input[name = 'selDept']"), function (i, o) {
+                selectedDept.push($(o).val());
+            });
+            var selectRole = [];
+
+            $.each($("input[name = 'selRole']"), function (i, o) {
+                selectRole.push($(o).val());
+            });
+
+
+            $("input[name=RoleId]").each(function () {
+                if ($(this).prop("checked")) {
+                    selRoleVal += $(this).val() + ",";
+                    selRole += $(this).next("span").text() + ",";
+                }
+            });
+
+            selRole = selRole.substring(0, selRole.length - 1);
+            selRoleVal = selRoleVal.substring(0, selRoleVal.length - 1);
+
+            if (selDeptVal == '') {
+                alert("请选择部门");
+                return;
+            }
+            if (selRoleVal == '') {
+                alert("请选择部门下的角色");
+                return;
+            }
+
+            var isNewDept = true;
+            for (var i in selectedDept) {
+                if (selectedDept[i] == selDeptVal) {
+                    isNewDept = false;
+                    break;
+                }
+            }
+            if (selDeptVal != '' && isNewDept) {
+                $("#selectedDept").append(
+                    "<span class=\"currentBlock\"><span class=\"btn btn-success\">"
+                     + selDept
+                     + "&nbsp;&nbsp;<b class=\"badge\">x</b></span><input type='hidden' name='selDept' value='" + selDeptVal + "'/></span>"
+                     );
+            }
+            if (selRoleVal != '') {
+                var selRoleArr = selRole.split(",");
+                var selRoleValArr = selRoleVal.split(",");
+
+                for (var i in selRoleValArr) {
+                    var isNewRole = true;
+                    for (var j in selectRole)
+                        if (selectRole[j] == selRoleValArr[i]) {
+                            isNewRole = false;
+
+                            break;
+                        }
+
+                    if (isNewRole)
+                        $("#selectedRole").append(
+                                          "<span class=\"currentBlock\"><span class=\"btn btn-success\">"
+                                         + selRoleArr[i]
+                                         + "&nbsp;&nbsp;<b class=\"badge\">x</b></span><input type='hidden' name='selRole' value='" + selRoleValArr[i] + "'/></span>"
+                                          );
+                }
+
+            }
+        });
+
+        $(".form-group").on("click", ".badge", function () {
+            $(this).closest(".currentBlock").remove()
+        });
+    });
+
+    function areaOnSelect(obj) {
+        var val = obj.value;
+        var isApp = true;
+        if (val == '') {//为全部为找前一个select
+            val = $(obj).prev("select").val();
+            isApp = false;
+        }
+
+        $.ajax({
+            url: '@Url.Action("RoleCheckbox", "WebUser")',
+            type: 'GET',
+            data: { deptId: val },
+            success: function (res) {
+                $("#roleList").html(res);
+            }
+        });
+
+        var res = '';
+        $.ajax({
+            url: '@Url.Action("DeptDropdownList2", "WebUser")',
+            type: 'GET',
+            data: { parentId: val },
+            success: function (res) {
+                if (isApp) {
+                    $(obj).nextAll().remove();
+                    if ($(res).find("option").size() > 1)
+                        $(obj).after(res);
+                }
+            }
+        });
+    }
+</script>

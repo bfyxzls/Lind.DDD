@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/bundles/bootstraps/css")
+    <link href="~/Content/bootstraps/CSS/bootstrap-submenu.css" rel="stylesheet" />
+    <link href="~/Scripts/JQTree/themes/default/style.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstraps/js")
+    @RenderSection("Scripts", required: false)
+    <script src="~/Scripts/knockout-2.1.0.js"></script>
+    <!-- 多级菜单JS-->
+    <script src="~/Content/bootstraps/JS/docs.js"></script>
+    <script src="~/Content/bootstraps/JS/bootstrap-submenu.js"></script>
+    <!-- 结果多级菜单JS-->
+    <script src="~/Scripts/JQTree/jquery.jstree.js"></script>
+    <script src="~/Content/bootstraps/JS/Respond.js"></script>
+    <script src="~/Scripts/JS/ajaxLoading.js"></script>
+
+    <script>function detailDialog(id) {
+    $.ajaxLoading({
+        url: '/@(Request.RequestContext.RouteData.Values["controller"])/Details?id=' + id,
+        type: "get",
+        success: function (data) {
+            $('#dialogContent').html(data);
+        }
+    });
+}
+    </script>
+    <style type="text/css">
+        .validation-summary-errors ul {
+            margin: 0px;
+            padding-left: 10px;
+        }
+
+            .validation-summary-errors ul li {
+                color: red;
+                list-style-type: square;
+            }
+    </style>
+</head>
+<body>
+    <!-- 弹层 -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">详细
+                    </h4>
+                </div>
+                <div class="modal-body" id="dialogContent">
+                </div>
+                @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>*@
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+</body>
+</html>

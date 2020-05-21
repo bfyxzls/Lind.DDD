@@ -1,0 +1,20 @@
+﻿@using Lind.DDD.Paging
+
+@model Lind.DDD.Paging.PagedList<Lind.DDD.Manager.Models.WebDepartments>
+
+@{
+    ViewBag.Title = "部门管理";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dept_Tree").bind("loaded.jstree", function (e, data) {
+            data.inst.open_all(-1); // -1默认全部展开节点 
+        }).jstree({
+            "plugins": ["themes", "html_data"],
+            "core": { "initially_open": ["DepartmentID_node1"] }
+        });
+    });
+
+</script>
+
+@Html.GeneratorDeptTree()

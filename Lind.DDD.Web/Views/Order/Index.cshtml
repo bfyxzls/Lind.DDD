@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "订单确认页";
+}
+@model Lind.DDD.Web.Models.Product
+@using (Html.BeginForm())
+{ 
+    @Html.HiddenFor(i => i.Id)
+    <p>商品名称：@Model.Name</p>
+    <p>商品种类：@Model.Category.Name</p>
+    <p>价格：@Model.Price </p>
+    <p>折扣：@Model.Discount</p>
+    <p>数量：<input type="text" name="SaleCount" value="1" /></p>
+    
+    <button>提交订单</button>
+
+}

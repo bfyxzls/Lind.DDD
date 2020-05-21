@@ -1,0 +1,51 @@
+﻿@model Lind.DDD.Web.Models.UserInfo
+
+@{
+    ViewBag.Title = "用户详细";
+}
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.UserName)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.UserName)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.RealName)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.RealName)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Password)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Password)
+</div>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.QQ)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.QQ)
+</div>
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Email)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Email)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DataCreateDateTime)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DataCreateDateTime)
+</div>
+
+<p></p>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("返回", "Index", null, new { @class = "btn btn-warning" })
+</p>

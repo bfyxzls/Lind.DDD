@@ -1,0 +1,47 @@
+﻿@model Lind.DDD.Api.Models.TestApiModel
+
+@{
+    ViewBag.Title = "Details";
+}
+<fieldset>
+    <legend>数据详细</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Info)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Info)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Deposit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Deposit)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.IsMale)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsMale)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Birthday)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Birthday)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

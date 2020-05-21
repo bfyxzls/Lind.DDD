@@ -1,0 +1,49 @@
+﻿@model Lind.DDD.Web.Models.Product
+
+@{
+    ViewBag.Title = "商品详细";
+}
+
+
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Name)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Price)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Price)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Discount)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Discount)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.Description)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Description)
+</div>
+
+<div class="display-label">
+    @Html.DisplayNameFor(model => model.DataCreateDateTime)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.DataCreateDateTime)
+</div>
+
+ 
+<p></p>
+<p>
+    @Html.ActionLink("购买", "Index", "Order", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("返回", "Index", null, new { @class = "btn btn-warning" })
+</p>

@@ -1,0 +1,66 @@
+﻿@model Lind.DDD.Paging.PagedList<Lind.DDD.Web.Models.Product>
+
+@{
+    ViewBag.Title = "商品列表";
+}
+<form class="form-inline" method="post">
+
+    @Html.ActionLink("添加一个商品", "Create")
+    <input type="text" name="keyword" value="@ViewBag.keyword"/>
+    <button>查询</button>
+
+</form>
+<table class="gridtable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>实收</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCreateDateTime)
+        </th>
+
+        <th>分类</th>
+        <th style="width:169px;"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td><span style="color: green">@(item.Price * item.Discount / 100)</span></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @item.DataCreateDateTime.ToShortDateString()
+            </td>
+
+            <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+            <td>
+                @Html.ActionLink("详细", "Details", new { id = item.Id }, new {@class="btn btn-primary btn-sm"}) 
+                @Html.ActionLink("购买", "Index", "Order", new { id = item.Id }, new {@class="btn btn-warning btn-sm" }) 
+                @Html.ActionLink("编辑", "Edit", "Product", new { id = item.Id }, new { @class="btn btn-success btn-sm"})
+
+            </td>
+        </tr>
+    }
+
+</table>

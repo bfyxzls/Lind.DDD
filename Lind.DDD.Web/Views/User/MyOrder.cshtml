@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Lind.DDD.Web.Models.OrderInfo>
+@using Lind.DDD.Presentation;
+@{
+    ViewBag.Title = "我的订单";
+    string status = ViewBag.OrderStatus;
+
+}
+<form class="form-inline" method="post">
+    @Html.DropDownListEnumFor(typeof(Lind.DDD.Web.Enums.OrderStatus), status)
+    <button>查询</button>
+</form>
+<table class="gridtable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserInfoId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserInfoName)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.OrderPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCreateDateTime)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserInfoId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserInfoName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCreateDateTime)
+            </td>
+
+            <td>
+                @Html.DisplayEnumFor(modelItem => item.OrderStatus)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,29 @@
+﻿@model WebDataSetting
+
+@{
+    ViewBag.Title = "编辑数据集";
+}
+<form class="form-horizontal" method="post" novalidate="novalidate">
+    <div id="Dept_DataSetView">
+        @Html.Action("Dept_DataSet", "WebDataSetting", new { dataSetTypeId = Model.WebDataCtrlId, id = Model.Id })
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button>提交</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dept_Tree").bind("loaded.jstree", function (e, data) {
+            data.inst.open_all(-1); // -1默认全部展开节点 
+        }).jstree({
+            "plugins": ["themes", "html_data"],
+            "core": { "initially_open": ["DepartmentID_node1"] }
+        });
+
+    });
+
+</script>
+
+

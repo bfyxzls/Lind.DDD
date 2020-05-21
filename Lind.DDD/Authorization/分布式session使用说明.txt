@@ -1,0 +1,29 @@
+﻿1 使用nuget安装redis缓存 StackExchange.Redis
+2 使用nuget安装RedisSession服务　 RedisSessionStateProvider
+3 从nuget添加RedisSession之后，它会在你的config文件中写入以下内容，主要是对session进行持久化设置的
+    <sessionState mode="Custom" customProvider="MySessionStateStore" timeout="30">
+      <providers>
+        <!-- Either use 'connectionString' and provide all parameters as string OR use 'host','port','accessKey','ssl','connectionTimeoutInMilliseconds' and 'operationTimeoutInMilliseconds'. -->
+        <!-- 'throwOnError','retryTimeoutInMilliseconds','databaseId' and 'applicationName' can be used with both options. -->
+        <!--
+          <add name="MySessionStateStore" 
+            host = "127.0.0.1" [String]
+            port = "" [number]
+            accessKey = "" [String]
+            ssl = "false" [true|false]
+            throwOnError = "true" [true|false]
+            retryTimeoutInMilliseconds = "5000" [number]
+            databaseId = "0" [number]
+            applicationName = "" [String]
+            connectionTimeoutInMilliseconds = "5000" [number]
+            operationTimeoutInMilliseconds = "1000" [number]
+            connectionString = "<Valid StackExchange.Redis connection string>" [String]
+            loggingClassName = "<Assembly qualified class name that contains logging method specified below>" [String]
+            loggingMethodName = "<Logging method should be defined in loggingClass. It should be public, static, does not take any parameters and should have a return type of System.IO.TextWriter.>" [String]
+          />
+        -->
+        <add name="MySessionStateStore" type="Microsoft.Web.Redis.RedisSessionStateProvider" host="127.0.0.1" accessKey="" ssl="false" />
+      </providers>
+    </sessionState>
+4 下载是新版本的redis服务端，可以是windows版的，我用的是2.6.13，低版本的redis会出现Eval命令无法识别的问题
+5 处理完成，可以测试你的session了，默认过期时间为1200秒

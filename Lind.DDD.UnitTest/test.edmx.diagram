@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5948d8a7abcd458b934a5a8b825e9e0b" Name="关系图1">
+        <EntityTypeShape EntityType="Test_Code_FirstModel.C__MigrationHistory" Width="1.5" PointX="2.0865463791818106" PointY="2.3814334284427732" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebConfirmRecords" Width="1.5" PointX="4.2076538373751813" PointY="12.154761364755576" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebDataCtrls" Width="1.5" PointX="6.9321686098967543" PointY="14.537933803413964" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebDataSettings" Width="1.5" PointX="1.6394279197042005" PointY="14.674154377856365" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebDepartments" Width="1.5" PointX="3.6167128661725267" PointY="7.1961285505425785" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebLoggers" Width="1.5" PointX="10.905505667862252" PointY="10.042397757080568" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebManageMenus" Width="1.5" PointX="0.20256549874440094" PointY="31.037046640662965" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebManageRoles" Width="1.5" PointX="0.011102154856129622" PointY="24.964926612081438" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebManageRoles_WebManageMenus_Authority_R" Width="1.5" PointX="8.9453419544479544" PointY="5.6929110166118067" />
+        <EntityTypeShape EntityType="Test_Code_FirstModel.WebManageUsers" Width="1.5" PointX="1.8999509037937741" PointY="28.642956925855465" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebDepartments_dbo_WebDepartments_ParentID" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId" />
+        <AssociationConnector Association="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId" />
+        <AssociationConnector Association="Test_Code_FirstModel.WebDepartments_WebManageUsers_R" />
+        <AssociationConnector Association="Test_Code_FirstModel.WebManageRoles_WebManageUsers_R" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebDataSetting>
+@{
+    ViewBag.Title = "数据集列表";
+    int totalRecord = Convert.ToInt32(ViewBag.totalRecord);
+}
+<form class="form-inline" novalidate="novalidate">
+    <a class="btn btn-success" href="/WebDataSetting/Create">添加一个</a>
+</form>
+<p></p>
+<table class="table table-hover table-bordered">
+    <tbody>
+        <tr>
+            <th>
+                <input type="checkbox" id="checkAll"></th>
+            <th>角色</th>
+            <th>类型</th>
+            <th>类型字段</th>
+            <th>更新时间</th>
+            <th></th>
+        </tr>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var item in Model)
+            { 
+            <tr>
+                <td>
+                    <input type="checkbox" value="@item.Id" name="checkId"></td>
+                <td>@item.WebManageRoles.RoleName</td>
+                <td>@item.WebDataCtrl.DataCtrlName</td>
+                <td><span>@item.WebDataCtrl.DataCtrlType</span>-><span>@item.WebDataCtrl.DataCtrlField</span></td>
+                <td>@item.DataUpdateDateTime</td>
+                <td>
+                    <a class="btn btn-primary btn-xs" onclick="detailDialog('@item.Id')" href="#" data-target="#myModal" data-toggle="modal">查看</a>&nbsp;&nbsp;
+                    <a href="/WebDataSetting/Edit/@item.Id" class="btn btn-success btn-xs">编辑</a>&nbsp;&nbsp;
+                    <a onclick="javascript:return confirm('你确认要删除吗？') ? true : false;" href="/WebDataSetting/Delete/@item.Id" class="btn btn-danger btn-xs">删除</a>&nbsp;&nbsp;</td>
+            </tr>
+            }
+        }
+
+    </tbody>
+</table>
+@Html.GeneratePagger(totalRecord)

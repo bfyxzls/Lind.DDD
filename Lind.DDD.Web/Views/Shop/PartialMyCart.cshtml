@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Lind.DDD.Web.Models.Cart>
+
+@{
+    ViewBag.Title = "我的购物车";
+    decimal total = 0;
+}
+
+<p>
+    <a href="javascript:void(0)" onclick="clearCart()">清空购物车</a>
+</p>
+@using (Html.BeginForm("Do", "Shop"))
+{
+    if (Model == null || Model.Count() == 0)
+    {
+    <p>
+        购物车中没有任何商品... 
+    </p> 
+    }
+    else
+    {
+    <table class="gridtable" style="width: 100%">
+        <tr>
+            <th>
+
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            total += item.Price;
+            <tr>
+                <td>
+                    <input type="hidden" name="Id" value="@item.ProductId" />
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>@HttpUtility.UrlDecode(item.ProductName)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+            </tr>
+        }
+    </table>
+    <div class="display-field">
+        总计：<span style="color: green; font-weight: bold">@total</span> 元
+    </div>
+    <div class="display-label">
+        可用余额(注，本余额只能用来消费，不能提现)
+    </div>
+    <div class="display-field">
+        <span style="color: red; font-size: 14px; font-weight: bold">
+            @ViewBag.Money
+        </span>大叔币（1大叔币在大叔商城折合1人民币）,您还需要再支付<span style="color: red; font-size: 14px; font-weight: bold">@(total - Convert.ToDecimal(ViewBag.Money))</span>元
+    </div>
+    <div class="display-field">
+        <button>确认下单</button>
+    </div>
+    }
+}
+<script type="text/javascript">
+    bootstrapeCss();
+</script>

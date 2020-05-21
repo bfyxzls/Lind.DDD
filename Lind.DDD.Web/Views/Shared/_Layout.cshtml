@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="大叔商城，仓储大叔，领航软件" />
+    <meta name="description" content="大叔商城是仓储大叔和领航软件一起推出的面向开发人员的商城" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/bundles/bootstraps/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/bootstraps/JS/bootstrap.js"></script>
+    <script src="~/Scripts/knockout-2.1.0.js"></script>
+    @RenderSection("scripts", required: false)
+    <style type="text/css">
+        .active {
+            background: #eee;
+        }
+
+        .navbar-right {
+            margin-right: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="http://www.cnblogs.com/lori">大叔博客</a>
+            </div>
+
+            <div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/Shop"><span style="color: red">大叔商城</span></a></li>
+                    <li><a href="/Shop/OrderList"><span style="color: red">订单列表</span></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal">购物车<span id="cart" class="badge">0</span></a></li>
+                    <li><a href="/About"><span style="color: red">框架介绍</span></a></li>
+                    <li><a href="/About/Function"><span style="color: red">核心技术(Hot)</span></a></li>
+                    <li><a href="/User/Setting">个人设置</a></li>
+                    <li><a href="/user/myorder">我的订单</a></li>
+                    <li><a href="/Oauth/test">OAuth</a></li>
+
+                    @if (Lind.DDD.Authorization.CurrentUser.IsLogin
+                        && Lind.DDD.Authorization.CurrentUser.Role == Lind.DDD.Web.Enums.UserRole.Manager.ToString())
+                    {
+                        <li><a href="/product/index">资源</a></li>
+                        <li><a href="/User/Index">用户</a></li>
+                    }
+                </ul>
+            </div>
+
+            <div>
+                @if (Lind.DDD.Authorization.CurrentUser.IsLogin)
+                {
+                      
+                    <p class="navbar-text navbar-right">
+                        <span style="color: red">@Lind.DDD.Authorization.CurrentUser.UserName</span>
+                        <span>余额</span>
+                        <span style="color: red">@Lind.DDD.Authorization.CurrentUser.ExtInfo</span>
+                        <a href="/Home/ModifyPassword" class="navbar-link">修改密码</a> <a href="/Home/Logout" class="navbar-link">退出</a>
+                    </p>
+                      
+                }
+                else
+                {
+                    <p class="navbar-text navbar-right">
+                        <a href="/Home/Login" class="navbar-link"><span style="color: red">登录</span></a> <a href="/Home/Register" class="navbar-link"><span style="color: red">注册</span></a>
+                    </p>
+                       
+                }
+            </div>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        @ViewBag.Title
+                    </div>
+                    <div class="panel-body">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-default" style="min-height: 20px;">
+            <div class="container">
+                <ins>仓储大叔对技术的追求永不止步！</ins>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+        aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">大叔提示
+                    </h4>
+                </div>
+                <div class="modal-body" id="dialogContent">
+                </div>
+                @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        提交更改
+                    </button>
+                </div>*@
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal -->
+    <script type="text/javascript">
+        $(function () {
+            //高亮导航
+            var o = $(".nav").find("li").find("a[href$='@Request.Url.AbsolutePath']");
+            o.addClass("active").siblings().removeClass("active");
+
+            bootstrapeCss();
+            fillCartCount();
+        });
+
+
+        //我的购物车
+        $('#myModal').on('shown.bs.modal', function () {
+            // 执行一些动作...
+            $.get("/Shop/MyCart", function (data) {
+                $("#dialogContent").html(data);
+            });
+        })
+
+        //bootstrape的样式加载
+        function bootstrapeCss() {
+            //按钮
+            $("input[type=submit]").addClass("btn btn-primary");
+            $("button").addClass("btn btn-primary");
+            $("table").addClass("table table-hover table-bordered");
+            $("select").addClass("form-control");
+            $("input[type=text],input[type=password]").addClass("form-control");
+        }
+        //填充购物车数量
+        function fillCartCount() {
+            $.get("/Shop/GetCartCount", function (data) {
+                console.log(data);
+                $("#cart").html(data);
+            });
+        }
+
+        //添加购物车
+        function addCart(id, name) {
+            $.post("/shop/docart", { id: id }, function (data) {
+                alert("[" + name + "]，成功加到购物车！");
+                fillCartCount();
+            });
+        }
+        //清空购物车
+        function clearCart() {
+            $.get("/Shop/ClearCart", function (data) {
+                $.get("/Shop/MyCart", function (data) {
+                    $("#dialogContent").html(data);
+                    fillCartCount();
+                });
+            });
+        }
+    </script>
+</body>
+</html>

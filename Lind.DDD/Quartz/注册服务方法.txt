@@ -1,0 +1,1 @@
+﻿sc create DataCenterService binpath= "E:\tfs21\Tsingda.DataCenter\1-Trunck\Tsingda.DataCenter\Tsingda.DataCenter.ServicePool\bin\Debug\Tsingda.DataCenter.ServicePool.exe --service" displayname= "DataCenter Manage Service" depend= tcpip start= auto

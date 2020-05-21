@@ -1,0 +1,28 @@
+﻿@model IEnumerable<WebManageRoles>
+@{
+    Layout = null;
+    string selValStr = Convert.ToString(ViewBag.SelVal);
+    var selArr = Array.ConvertAll<string, int>(selValStr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries), i => Convert.ToInt32(i));
+}
+<div class="checkbox">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+        <label>
+            @if (selArr.Contains(item.Id))
+            { 
+                <input type="checkbox"  name="RoleId" value="@item.Id" checked="checked"/>
+            }
+            else
+            {
+                <input type="checkbox"  name="RoleId" value="@item.Id"/>
+            }
+            <span>@item.RoleName</span></label>
+        }
+    }
+    else
+    {
+        <span style="color:red;">本部门下没有任何角色，请先为部门添加角色！</span> 
+    }
+</div>

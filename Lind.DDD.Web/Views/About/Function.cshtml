@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "核心技术的研究";
+}
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseOne">Lind.DDD项目架构方式
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/Lind.DDDImg.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseTwo">SOA项目架构方式
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/SOA.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree">数据搬运工DSS项目架构方式
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/DSS.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree4">数据同步中的一致性的控制
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree4" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/consistency.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree5">分布式文件存储，大叔使用的是FastSocket
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree5" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/FastDFS.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree6">大数据缓存，大叔使用的是MongoDB
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree6" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    <li>
+                        <b>Mongodb由路由服务器，配置服务器和数据服务器组成</b><br />
+                        <img src="~/Content/Images/mongo1.jpg" />
+                    </li>
+                    <li>
+                        <b>它可以对大数据进行分片存储</b><br />
+                        <img src="~/Content/Images/mongo2.jpg" />
+                    </li>
+                    <li>
+                        <b>为了数据更安全，提供了复本集的功能</b><br />
+                        <img src="~/Content/Images/mongo3.jpg" />
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree7">分布式Pub/Sub，大叔自己封装了一下Redis的实现方式
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree7" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/subpub.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree8">工作单元，大叔是这样实现UoW的
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree8" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/UoW.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree9">大叔告诉你们VO,DTO,DO和PO的关系
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree9" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/VO_DTO_DO_PO.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree10">大叔告诉你们耗时的任务，如何去处理它们
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree10" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/Task.jpg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion"
+                    href="#collapseThree11">大叔对在线支付模式的封装
+                </a>
+            </h4>
+        </div>
+        <div id="collapseThree11" class="panel-collapse collapse">
+            <div class="panel-body">
+                <img src="~/Content/Images/pay.jpg" />
+            </div>
+        </div>
+    </div>
+</div>

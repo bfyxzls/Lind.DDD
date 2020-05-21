@@ -1,0 +1,17 @@
+﻿@model Lind.DDD.Manager.Models.WebManageMenus
+@{
+    ViewBag.Title = "添加菜单";
+}
+@Html.BindToFormMore(Model, (long)Lind.DDD.Authorization.Authority.Create, @<div class="form-group">
+    <label for="ParentID" class="col-sm-2 control-label">命令按钮</label>
+    <div class="col-sm-10">
+        @Html.AuthorityCommandForCheckboxHtmlTags("Authority", null)
+    </div>
+</div>
+
+                      , i => i.Name
+                      , i => i.LinkUrl
+                      , i => i.IsDisplayMenuTree
+                      , i => i.Level
+                      , i => i.ParentID
+                      , i => i.SortNumber)

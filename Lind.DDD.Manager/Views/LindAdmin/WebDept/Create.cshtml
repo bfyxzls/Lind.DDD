@@ -1,0 +1,9 @@
+﻿@model Lind.DDD.Manager.Models.WebDepartments
+@{
+    ViewBag.Title = "添加部门";
+}
+
+@Html.BindToForm(Model, i => i.Name
+                      , i => i.ParentID
+                      , i => i.SortNumber
+                      , i => i.Level)

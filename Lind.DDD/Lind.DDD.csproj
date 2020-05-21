@@ -1,0 +1,825 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26B8BB75-982F-46D1-9106-1AF0A2E48726}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lind.DDD</RootNamespace>
+    <AssemblyName>Lind.DDD</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Lind.DDD.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Lind.DDD.XML</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Configuration, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Configuration.3.3.0\lib\net40\Autofac.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=4.0.4.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.0.4\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.0\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper.Contrib, Version=1.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Contrib.1.50.0\lib\net45\Dapper.Contrib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.DynamicFilters, Version=2.4.0.0, Culture=neutral, PublicKeyToken=146423a1b8d60775, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.DynamicFilters.2.4.0\lib\net40\EntityFramework.DynamicFilters.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gma.QrCodeNet.0.4.1.2\lib\net40\Gma.QrCodeNet.Encoding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="kafka-net, Version=0.9.0.65, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\kafka-net.0.9.0.65\lib\net45\kafka-net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.3.0.157, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.3.0\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.3.0.157, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.3.0\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.3.0.157, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.3.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NetPay, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>OnlinePay\chinapay\NetPay.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Quartz, Version=2.4.1.0, Culture=neutral, PublicKeyToken=f6b8c98a402cc8a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.6.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.3.6.6\lib\net45\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.1.608.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.1.1.608\lib\net45\StackExchange.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DynamicModules\LindContainer.cs" />
+    <Compile Include="DynamicModules\DynamicModule.cs" />
+    <Compile Include="DynamicModules\DynamicModuleExtensions.cs" />
+    <Compile Include="KafkaMQ\KafkaMqPublisher.cs" />
+    <Compile Include="KafkaMQ\KafkaMqSubscriber.cs" />
+    <Compile Include="LindAspects\Attributes\AspectAttribute.cs" />
+    <Compile Include="LindAspects\Attributes\CachingAspectAttribute.cs" />
+    <Compile Include="LindAspects\Attributes\LoggerAspectAttribute.cs" />
+    <Compile Include="LindAspects\DemoTest.cs" />
+    <Compile Include="LindAspects\DynamicProxyGenerator.cs" />
+    <Compile Include="LindAspects\IAspectProxy.cs" />
+    <Compile Include="LindAspects\InvokeContext.cs" />
+    <Compile Include="LindAspects\Metadata\ExceptionMetadata.cs" />
+    <Compile Include="LindAspects\Metadata\MethodMetadata.cs" />
+    <Compile Include="LindAspects\Metadata\ParameterMetadata.cs" />
+    <Compile Include="LindAspects\Metadata\ResultMetadata.cs" />
+    <Compile Include="LindAspects\ProxyFactory.cs" />
+    <Compile Include="Authorization\Api\ApiValidateFilter.cs" />
+    <Compile Include="Authorization\Api\ApiValidateHelper.cs" />
+    <Compile Include="Authorization\Api\ApiValidateModel.cs" />
+    <Compile Include="Authorization\Api\CorsFilter.cs" />
+    <Compile Include="Authorization\Api\JsonContentNegotiator.cs" />
+    <Compile Include="Authorization\Api\OAuthData.cs" />
+    <Compile Include="Authorization\Authority.cs" />
+    <Compile Include="Authorization\CorsAttribute.cs" />
+    <Compile Include="ConfigConstants\Models\ConfigModel.cs" />
+    <Compile Include="CQRS\Command.cs" />
+    <Compile Include="CQRS\CommandBus.cs" />
+    <Compile Include="CQRS\ICommandHandler.cs" />
+    <Compile Include="Domain\Behavors\IAuditedBehavor.cs" />
+    <Compile Include="EntityValidation\ValidateProvider.cs" />
+    <Compile Include="LindMQ\Brokers\BrokerManager.cs" />
+    <Compile Include="LindMQ\Brokers\BrokerPullCommand.cs" />
+    <Compile Include="LindMQ\Brokers\BrokerService.cs" />
+    <Compile Include="LindMQ\Brokers\BrokerPushCommand.cs" />
+    <Compile Include="LindMQ\Brokers\Client_TopicQueue_Offset.cs" />
+    <Compile Include="LindMQ\Brokers\Queue_Offset.cs" />
+    <Compile Include="LindMQ\Brokers\Topic_Queue_Offset.cs" />
+    <Compile Include="LindMQ\Consumers\ConsumerManager.cs" />
+    <Compile Include="LindMQ\Brokers\MessageBody.cs" />
+    <Compile Include="LindMQ\Consumers\ConsumerSetting.cs" />
+    <Compile Include="LindMQ\Producers\ProducerManager.cs" />
+    <Compile Include="LindMQ\Producers\ProducerSetting.cs" />
+    <Compile Include="LindMQ\Producers\PushResult.cs" />
+    <Compile Include="LindMQ\Producers\PushStatus.cs" />
+    <Compile Include="LinqExtensions\ConcurrentList.cs" />
+    <Compile Include="Logger\Implements\EmptyLogger.cs" />
+    <Compile Include="Logger\Implements\JsonFileLogger.cs" />
+    <Compile Include="Messaging\Implements\EmptyMessageManager.cs" />
+    <Compile Include="Quartz\MonitorJob.cs" />
+    <Compile Include="RabbitMQ\MessageReceivedEventArgs.cs" />
+    <Compile Include="RabbitMQ\RabbitMqPublisher.cs" />
+    <Compile Include="RabbitMQ\RabbitMqSubscriber.cs" />
+    <Compile Include="SSO\CertificationModel.cs" />
+    <Compile Include="SSO\Implements\CacheProvider.cs" />
+    <Compile Include="SSO\Implements\RedisProvider.cs" />
+    <Compile Include="SSO\ISSOProvider.cs" />
+    <Compile Include="SSO\SSOCoreController.cs" />
+    <Compile Include="SSO\SSOManager.cs" />
+    <Compile Include="CacheConfigFile\ConfigFactory.cs" />
+    <Compile Include="CacheConfigFile\ConfigFilesManager.cs" />
+    <Compile Include="CacheConfigFile\ConfigSerialize.cs" />
+    <Compile Include="CacheConfigFile\DataCache.cs" />
+    <Compile Include="CacheConfigFile\IConfiger.cs" />
+    <Compile Include="CacheConfigFile\Singleton.cs" />
+    <Compile Include="Caching\CacheManager.cs" />
+    <Compile Include="Caching\ICache.cs" />
+    <Compile Include="Caching\RedisCache.cs" />
+    <Compile Include="Caching\RuntimeCache.cs" />
+    <Compile Include="Domain\Behavors\IOwnerBehavor.cs" />
+    <Compile Include="Domain\Behavors\ISortBehavor.cs" />
+    <Compile Include="Domain\Entities\WebAuthorityCommands.cs" />
+    <Compile Include="Filters\ActionAuthorityAttribute.cs" />
+    <Compile Include="Filters\ActionTrackAttribute.cs" />
+    <Compile Include="Filters\StaticCachingAttribute.cs" />
+    <Compile Include="LindPlugins\IPlugins.cs" />
+    <Compile Include="LindPlugins\PluginManager.cs" />
+    <Compile Include="LindPlugins\PluginModel.cs" />
+    <Compile Include="RedisClient\StackExchangeRedisExtensions.cs" />
+    <Compile Include="CatClientPur\CatFilter.cs" />
+    <Compile Include="CatClientPur\CatHttpClient.cs" />
+    <Compile Include="CatClientPur\Configuration\ClientConfig.cs" />
+    <Compile Include="CatClientPur\Configuration\ClientConfigManager.cs" />
+    <Compile Include="CatClientPur\Context\CatContext.cs" />
+    <Compile Include="CatClientPur\Message\IEvent.cs" />
+    <Compile Include="CatClientPur\Message\IForkedTransaction.cs" />
+    <Compile Include="CatClientPur\Message\IHeartbeat.cs" />
+    <Compile Include="CatClientPur\Message\IMessage.cs" />
+    <Compile Include="CatClientPur\Message\IMessageTree.cs" />
+    <Compile Include="CatClientPur\Message\IMetric.cs" />
+    <Compile Include="CatClientPur\Message\Internals\AbstractMessage.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultEvent.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultForkedTransaction.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultHeartbeat.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultMessageTree.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultMetric.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultTaggedTransaction.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultTrace.cs" />
+    <Compile Include="CatClientPur\Message\Internals\DefaultTransaction.cs" />
+    <Compile Include="CatClientPur\Message\Internals\MessageId.cs" />
+    <Compile Include="CatClientPur\Message\Internals\NullMessage.cs" />
+    <Compile Include="CatClientPur\Message\ITaggedTransaction.cs" />
+    <Compile Include="CatClientPur\Message\ITrace.cs" />
+    <Compile Include="CatClientPur\Message\ITransaction.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Codec\ChannelBuffer.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Codec\IMessageCodec.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Codec\PlainTextMessageCodec.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\DiskInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\Extend\CpuInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\Extend\DiskIO.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\Extend\HeartbeatExtention.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\Extend\NetworkIO.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\GCInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\IRefresh.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\MemoryInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\MessageInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\NodeStatusInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\OSInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\RuntimeInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Heartbeat\ThreadInfo.cs" />
+    <Compile Include="CatClientPur\Message\Spi\IMessageManager.cs" />
+    <Compile Include="CatClientPur\Message\Spi\IMessageProducer.cs" />
+    <Compile Include="CatClientPur\Message\Spi\IMessageStatistics.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Internals\DefaultMessageManager.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Internals\DefaultMessageProducer.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Internals\DefaultMessageStatistics.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Internals\MessageIdFactory.cs" />
+    <Compile Include="CatClientPur\Message\Spi\Internals\StatusUpdateTask.cs" />
+    <Compile Include="CatClientPur\Message\Spi\IO\IMessageSender.cs" />
+    <Compile Include="CatClientPur\Message\Spi\IO\TcpMessageSender.cs" />
+    <Compile Include="CatClientPur\Program.cs" />
+    <Compile Include="CatClientPur\CatClient.cs" />
+    <Compile Include="CatClientPur\PureCatConstants.cs" />
+    <Compile Include="CatClientPur\Util\AppEnv.cs" />
+    <Compile Include="CatClientPur\Util\CatHttpRequest.cs" />
+    <Compile Include="CatClientPur\Util\CatThreadLocal.cs" />
+    <Compile Include="CatClientPur\Util\Logger.cs" />
+    <Compile Include="CatClientPur\Util\MilliSecondTimer.cs" />
+    <Compile Include="CatClientPur\Util\NetworkInterfaceManager.cs" />
+    <Compile Include="CatClientPur\Util\XmlHelper.cs" />
+    <Compile Include="Commons\DisposableBase.cs" />
+    <Compile Include="Commons\ReturnMessage.cs" />
+    <Compile Include="ConfigConstants\ConfigManager.cs" />
+    <Compile Include="Domain\Behavors\ILogicDeleteBehavor.cs" />
+    <Compile Include="Domain\Behavors\IModifyBehavor.cs" />
+    <Compile Include="Domain\Behavors\IStatusBehavor.cs" />
+    <Compile Include="Domain\Entities\NavigationAttribute.cs" />
+    <Compile Include="Domain\Entities\Status.cs" />
+    <Compile Include="Exceptions\LindException.cs" />
+    <Compile Include="FastDFS\Common\Connection.cs" />
+    <Compile Include="FastDFS\Common\ConnectionManager.cs" />
+    <Compile Include="FastDFS\Common\Consts.cs" />
+    <Compile Include="FastDFS\Common\FDFSConfig.cs" />
+    <Compile Include="FastDFS\Common\FDFSException.cs" />
+    <Compile Include="FastDFS\Common\FDFSHeader.cs" />
+    <Compile Include="FastDFS\Common\FDFSRequest.cs" />
+    <Compile Include="FastDFS\Common\Pool.cs" />
+    <Compile Include="FastDFS\Common\StorageNode.cs" />
+    <Compile Include="FastDFS\Common\Util.cs" />
+    <Compile Include="FastDFS\FastDFSClient.cs" />
+    <Compile Include="FastDFS\Program.cs" />
+    <Compile Include="FastDFS\Storage\APPEND_FILE.cs" />
+    <Compile Include="FastDFS\Storage\DELETE_FILE.cs" />
+    <Compile Include="FastDFS\Storage\DOWNLOAD_FILE.cs" />
+    <Compile Include="FastDFS\Storage\GET_METADATA.cs" />
+    <Compile Include="FastDFS\Storage\QUERY_FILE_INFO.cs" />
+    <Compile Include="FastDFS\Storage\SET_METADATA.cs" />
+    <Compile Include="FastDFS\Storage\UPLOAD_APPEND_FILE.cs" />
+    <Compile Include="FastDFS\Storage\UPLOAD_FILE.cs" />
+    <Compile Include="FastDFS\Storage\UPLOAD_SLAVE_FILE.cs" />
+    <Compile Include="FastDFS\TrackerSection.cs" />
+    <Compile Include="FastDFS\Tracker\LIST_ALL_GROUPS.cs" />
+    <Compile Include="FastDFS\Tracker\LIST_ONE_GROUP.cs" />
+    <Compile Include="FastDFS\Tracker\LIST_STORAGE.cs" />
+    <Compile Include="FastDFS\Tracker\QUERY_FETCH_ALL.cs" />
+    <Compile Include="FastDFS\Tracker\QUERY_FETCH_ONE.cs" />
+    <Compile Include="FastDFS\Tracker\QUERY_STORE_WITHOUT_GROUP_ALL.cs" />
+    <Compile Include="FastDFS\Tracker\QUERY_STORE_WITHOUT_GROUP_ONE.cs" />
+    <Compile Include="FastDFS\Tracker\QUERY_STORE_WITH_GROUP_ALL.cs" />
+    <Compile Include="FastDFS\Tracker\QUERY_STORE_WITH_GROUP_ONE.cs" />
+    <Compile Include="FastDFS\Tracker\QUERY_UPDATE.cs" />
+    <Compile Include="IoC\DynamicIoCFactory.cs" />
+    <Compile Include="IoC\Implements\AutofacAdapterContainer.cs" />
+    <Compile Include="LinqExtensions\DependencyExtensions.cs" />
+    <Compile Include="Logger\Implements\CatLogger.cs" />
+    <Compile Include="Modules\LindModuleCollection.cs" />
+    <Compile Include="Modules\LindModuleInfo.cs" />
+    <Compile Include="Modules\DIAttribute.cs" />
+    <Compile Include="Modules\HelloModule.cs" />
+    <Compile Include="Modules\LindModule.cs" />
+    <Compile Include="Modules\LindModuleManager.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\DownloadBill.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\JsApiPay.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\MicroPay.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\NativeNotify.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\NativePay.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\OrderQuery.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\Refund.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\RefundQuery.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\business\ResultNotify.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\core\Config.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\core\Data.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\core\Exception.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\core\HttpService.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\core\Log.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\core\Notify.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\core\WxPayApi.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\JsApiImplement.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\NotifyModel.cs" />
+    <Compile Include="OnlinePay\WeixinJSApi\weixinController.cs" />
+    <Compile Include="Thrift\demo.cs" />
+    <Compile Include="Thrift\Demo\Client\Program.cs" />
+    <Compile Include="Thrift\Demo\IL\HelloThrift.cs" />
+    <Compile Include="Thrift\Demo\IL\Xception.cs" />
+    <Compile Include="Thrift\Demo\Server\HelloThriftHandler.cs" />
+    <Compile Include="Thrift\Demo\Server\Program.cs" />
+    <Compile Include="TreeHelper\DataTree.cs" />
+    <Compile Include="TreeHelper\ITree.cs" />
+    <Compile Include="Utils\AlgorithmsHelper.cs" />
+    <Compile Include="Utils\AssemblyHelper.cs" />
+    <Compile Include="Utils\AsyncTaskManager.cs" />
+    <Compile Include="Utils\DictionaryExtensions.cs" />
+    <Compile Include="Utils\HttpHelper.cs" />
+    <Compile Include="Utils\Http\CookieHelper.cs" />
+    <Compile Include="Utils\Http\RequestHelper.cs" />
+    <Compile Include="Utils\CommonHelper.cs" />
+    <Compile Include="Utils\QueryablePagingAction.cs" />
+    <Compile Include="Utils\RSATools.cs" />
+    <Compile Include="Utils\TimeHelper.cs" />
+    <Compile Include="Utils\XmlHelper.cs" />
+    <Compile Include="WebExtensions\ChartExtensions.cs" />
+    <Compile Include="WebExtensions\HtmlExtensions.cs" />
+    <Compile Include="HttpExtensions\HttpResponse\HttpResponseJson.cs" />
+    <Compile Include="Authorization\Mvc\AuthorizationLoginFilter.cs" />
+    <Compile Include="Authorization\CurrentUser.cs" />
+    <Compile Include="Authorization\HttpMethodFlags.cs" />
+    <Compile Include="SSO\SSOActionFilter.cs" />
+    <Compile Include="LinqExtensions\AutoMapExtensions.cs" />
+    <Compile Include="CachingQueue\FileDictionary\Demo.cs" />
+    <Compile Include="CachingQueue\FileDictionary\FileDictionaryManager.cs" />
+    <Compile Include="CachingQueue\FileDictionary\SendingResult.cs" />
+    <Compile Include="CachingQueue\FileDictionary\SentResult.cs" />
+    <Compile Include="CachingQueue\FileDictionary\SerializableDictionary.cs" />
+    <Compile Include="CachingQueue\Implements\FileQueue.cs" />
+    <Compile Include="CachingQueue\Implements\MemoryQueue.cs" />
+    <Compile Include="CachingQueue\Implements\RedisQueue.cs" />
+    <Compile Include="CachingQueue\IQueue.cs" />
+    <Compile Include="CachingQueue\QueueManager.cs" />
+    <Compile Include="CachingQueue\ResultDictionary.cs" />
+    <Compile Include="CachingDataSet\CacheManager.cs" />
+    <Compile Include="CachingDataSet\CachingAttribute.cs" />
+    <Compile Include="CachingDataSet\CachingBehavior.cs" />
+    <Compile Include="CachingDataSet\CachingMethod.cs" />
+    <Compile Include="CachingDataSet\Implements\EntLibCacheProvider.cs" />
+    <Compile Include="CachingDataSet\Implements\ICacheProvider.cs" />
+    <Compile Include="CachingDataSet\Implements\RedisCacheProvider.cs" />
+    <Compile Include="Domain\Entities\IEntity.cs" />
+    <Compile Include="Domain\Entities\NoSqlEntity.cs" />
+    <Compile Include="LinqExtensions\ExpressionExtensions.cs" />
+    <Compile Include="OnlinePay\WapAlipay\AlipayConfig.cs" />
+    <Compile Include="OnlinePay\WapAlipay\AlipayCore.cs" />
+    <Compile Include="OnlinePay\WapAlipay\AlipayNotify.cs" />
+    <Compile Include="OnlinePay\WapAlipay\AlipaySubmit.cs" />
+    <Compile Include="OnlinePay\WapAlipay\Demo.cs" />
+    <Compile Include="OnlinePay\WapAlipay\MD5.cs" />
+    <Compile Include="OnlinePay\WapAlipay\RSA.cs" />
+    <Compile Include="OnlinePay\WapAlipay\WAPPay.cs" />
+    <Compile Include="OnlinePay\Weixin\ClientBase.cs" />
+    <Compile Include="OnlinePay\Weixin\CommonHelper.cs" />
+    <Compile Include="OnlinePay\Weixin\Demo.cs" />
+    <Compile Include="OnlinePay\Weixin\Enums.cs" />
+    <Compile Include="OnlinePay\Weixin\Exceptions.cs" />
+    <Compile Include="OnlinePay\Weixin\NotifyClient.cs" />
+    <Compile Include="OnlinePay\Weixin\OrderQueryClient.cs" />
+    <Compile Include="OnlinePay\Weixin\Params\OrderQueryParam.cs" />
+    <Compile Include="OnlinePay\Weixin\Params\ParamBuilder.cs" />
+    <Compile Include="OnlinePay\Weixin\Params\UnifiedOrderParam.cs" />
+    <Compile Include="OnlinePay\Weixin\PaymentConfig.cs" />
+    <Compile Include="OnlinePay\Weixin\Results\NotifyResult.cs" />
+    <Compile Include="OnlinePay\Weixin\Results\OrderQueryResult.cs" />
+    <Compile Include="OnlinePay\Weixin\Results\ResultBase.cs" />
+    <Compile Include="OnlinePay\Weixin\Results\ResultBuilder.cs" />
+    <Compile Include="OnlinePay\Weixin\Results\UnifiedOrderResult.cs" />
+    <Compile Include="OnlinePay\Weixin\TestWxPayClient.cs" />
+    <Compile Include="OnlinePay\Weixin\UnifiedOrderClient.cs" />
+    <Compile Include="OnlinePay\Weixin\WxPayClient.cs" />
+    <Compile Include="OnlinePay\Weixin\WxPayImpl.cs" />
+    <Compile Include="OnlinePay\Weixin\WxPaymentConfig.cs" />
+    <Compile Include="Quartz\demo.cs" />
+    <Compile Include="Quartz\JobBase.cs" />
+    <Compile Include="RedisClient\RedisQueueManager.cs" />
+    <Compile Include="RedisClient\RedisTransactionManager.cs" />
+    <Compile Include="DTO\RequestBase.cs" />
+    <Compile Include="DTO\ResponseBase.cs" />
+    <Compile Include="DTO\ResponseMessage.cs" />
+    <Compile Include="EntityValidation\RuleViolation.cs" />
+    <Compile Include="Filters\ActionLoggerAttribute.cs" />
+    <Compile Include="Filters\ExceptionErrorLoggerAttribute.cs" />
+    <Compile Include="HttpExtensions\HttpHandlers\CorsMessageHandler.cs" />
+    <Compile Include="HttpExtensions\HttpHandlers\HtmlTextHandler.cs" />
+    <Compile Include="HttpExtensions\HttpHandlers\ImageScalingHandler.cs" />
+    <Compile Include="HttpExtensions\HttpModules\SessionProviderHttpModule.cs" />
+    <Compile Include="HttpExtensions\HttpModules\UrlRewriteModule.cs" />
+    <Compile Include="HttpExtensions\HttpResponse\FileRequestController.cs" />
+    <Compile Include="HttpExtensions\HttpResponse\JsonpMediaTypeFormatter.cs" />
+    <Compile Include="HttpExtensions\HttpResponse\ValidateCode.cs" />
+    <Compile Include="IRepositories\IMongoRepository.cs" />
+    <Compile Include="LinqExtensions\PagingExtensions.cs" />
+    <Compile Include="Logger\Level.cs" />
+    <Compile Include="Logger\Implements\MongoLogger.cs" />
+    <Compile Include="Logger\Implements\Log4Logger.cs" />
+    <Compile Include="MongoDbClient\MongoManager.cs" />
+    <Compile Include="OnlinePay\WebPay\Alipay.cs" />
+    <Compile Include="OnlinePay\WebPay\AlipayImpl.cs" />
+    <Compile Include="OnlinePay\WebPay\ChinaPayImpl.cs" />
+    <Compile Include="OnlinePay\WebPay\ChinaPayUtils.cs" />
+    <Compile Include="OnlinePay\WebPay\Demo.cs" />
+    <Compile Include="OnlinePay\WebPay\HttpMethod.cs" />
+    <Compile Include="OnlinePay\WebPay\OrderEventArgs.cs" />
+    <Compile Include="OnlinePay\WebPay\PayBase.cs" />
+    <Compile Include="OnlinePay\WebPay\UseType.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\AsyncBinarySocketClient.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\BaseSocketClient.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\DSSBinarySocketClient.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\PooledSocketClient.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Protocol\AsyncBinaryProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Protocol\BadProtocolException.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Protocol\DSSBinaryProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Protocol\IProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Protocol\ThriftProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Request.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\RequestException.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Response\AsyncBinaryResponse.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Response\DSSBinaryResponse.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Response\IResponse.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\Response\ThriftResponse.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\ServerPool\DefaultServerPool.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\ServerPool\IServerPool.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\SocketConnector.cs" />
+    <Compile Include="FastSocket\FastSocket.Client\ThriftClient.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\BaseSocketServer.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\CommandSocketService.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Command\AsyncBinaryCommandInfo.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Command\DSSBinaryCommandInfo.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Command\ICommand.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Command\ICommandInfo.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Command\StringCommandInfo.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Command\ThriftCommandInfo.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Config\Server.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Config\ServerCollection.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Config\SocketServerConfig.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\ISocketListener.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\ISocketService.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\IUdpServer.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\IUdpService.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\PacketBuilder.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\AsyncBinaryProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\BadProtocolException.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\CommandLineProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\DSSBinaryProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\IProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\IUdpProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\ProtocolNames.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\Protocol\ThriftProtocol.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\SocketListener.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\SocketServer.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\SocketServerManager.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\UdpServer.cs" />
+    <Compile Include="FastSocket\FastSocket.Server\UdpSession.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\BaseHost.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\ConnectionCollection.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\DefaultConnection.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Events\DisconnectedHandler.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Events\ErrorHandler.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Events\MessageReceivedHandler.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Events\SendCallbackHandler.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Events\StartSendingHandler.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\IConnection.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\IHost.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\ISAEAPool.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Log\ConsoleListener.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Log\DiagnosticListener.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Log\ITraceListener.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Log\ListenerWrapper.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Log\Trace.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Packet.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\SerializeHelper.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Utils\ConsistentHashContainer.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Utils\Date.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Utils\DisposableBase.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Utils\IPUtility.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Utils\NetworkBitConverter.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Utils\ReflectionHelper.cs" />
+    <Compile Include="FastSocket\FastSocket.SocketBase\Utils\TaskEx.cs" />
+    <Compile Include="Thrift\Collections\TCollections.cs" />
+    <Compile Include="Thrift\Collections\THashSet.cs" />
+    <Compile Include="Thrift\Protocol\TAbstractBase.cs" />
+    <Compile Include="Thrift\Protocol\TBase.cs" />
+    <Compile Include="Thrift\Protocol\TBase64Utils.cs" />
+    <Compile Include="Thrift\Protocol\TBinaryProtocol.cs" />
+    <Compile Include="Thrift\Protocol\TCompactProtocol.cs" />
+    <Compile Include="Thrift\Protocol\TField.cs" />
+    <Compile Include="Thrift\Protocol\TJSONProtocol.cs" />
+    <Compile Include="Thrift\Protocol\TList.cs" />
+    <Compile Include="Thrift\Protocol\TMap.cs" />
+    <Compile Include="Thrift\Protocol\TMessage.cs" />
+    <Compile Include="Thrift\Protocol\TMessageType.cs" />
+    <Compile Include="Thrift\Protocol\TMultiplexedProcessor.cs" />
+    <Compile Include="Thrift\Protocol\TMultiplexedProtocol.cs" />
+    <Compile Include="Thrift\Protocol\TProtocol.cs" />
+    <Compile Include="Thrift\Protocol\TProtocolDecorator.cs" />
+    <Compile Include="Thrift\Protocol\TProtocolException.cs" />
+    <Compile Include="Thrift\Protocol\TProtocolFactory.cs" />
+    <Compile Include="Thrift\Protocol\TProtocolUtil.cs" />
+    <Compile Include="Thrift\Protocol\TSet.cs" />
+    <Compile Include="Thrift\Protocol\TStruct.cs" />
+    <Compile Include="Thrift\Protocol\TType.cs" />
+    <Compile Include="Thrift\Server\TServer.cs" />
+    <Compile Include="Thrift\Server\TSimpleServer.cs" />
+    <Compile Include="Thrift\Server\TThreadedServer.cs" />
+    <Compile Include="Thrift\Server\TThreadPoolServer.cs" />
+    <Compile Include="Thrift\TApplicationException.cs" />
+    <Compile Include="Thrift\TException.cs" />
+    <Compile Include="Thrift\TProcessor.cs" />
+    <Compile Include="Thrift\Transport\TBufferedTransport.cs" />
+    <Compile Include="Thrift\Transport\TFramedTransport.cs" />
+    <Compile Include="Thrift\Transport\THttpClient.cs" />
+    <Compile Include="Thrift\Transport\THttpHandler.cs" />
+    <Compile Include="Thrift\Transport\TMemoryBuffer.cs" />
+    <Compile Include="Thrift\Transport\TServerSocket.cs" />
+    <Compile Include="Thrift\Transport\TServerTransport.cs" />
+    <Compile Include="Thrift\Transport\TSocket.cs" />
+    <Compile Include="Thrift\Transport\TStreamTransport.cs" />
+    <Compile Include="Thrift\Transport\TTransport.cs" />
+    <Compile Include="Thrift\Transport\TTransportException.cs" />
+    <Compile Include="Thrift\Transport\TTransportFactory.cs" />
+    <Compile Include="UoW\IUnitOfWorkRepository.cs" />
+    <Compile Include="Upload\Demo.cs" />
+    <Compile Include="Upload\FileUploaderFactory.cs" />
+    <Compile Include="Upload\IFileUploader.cs" />
+    <Compile Include="Upload\Implements\FastDFSUploader.cs" />
+    <Compile Include="Upload\Implements\VideoSnapshoter.cs" />
+    <Compile Include="Upload\Parameters\FileUploadParameter.cs" />
+    <Compile Include="Upload\Parameters\ImageUploadParameter.cs" />
+    <Compile Include="Upload\Parameters\UploadParameterBase.cs" />
+    <Compile Include="Upload\Parameters\VideoUploadParameter.cs" />
+    <Compile Include="Upload\Results\FileUploadResult.cs" />
+    <Compile Include="Upload\Results\ImageUploadResult.cs" />
+    <Compile Include="Upload\Results\UploadResultBase.cs" />
+    <Compile Include="Upload\Results\VideoUploadResult.cs" />
+    <Compile Include="Upload\UploadStatus.cs" />
+    <Compile Include="Utils\CoderTimeLogs.cs" />
+    <Compile Include="Utils\DataCache.cs" />
+    <Compile Include="Utils\DataTableHelper.cs" />
+    <Compile Include="Utils\DistributedPrimaryKey.cs" />
+    <Compile Include="Utils\Encryptor\Base64Encryptor.cs" />
+    <Compile Include="Utils\Encryptor\DESByEncryptKey.cs" />
+    <Compile Include="Utils\Encryptor\DESEncryptor.cs" />
+    <Compile Include="Utils\Encryptor\Encryptor.cs" />
+    <Compile Include="Utils\Encryptor\MD5Encryptor.cs" />
+    <Compile Include="Utils\Encryptor\SHA256Encryptor.cs" />
+    <Compile Include="Utils\Encryptor\Utility.cs" />
+    <Compile Include="Utils\EnumDescription.cs" />
+    <Compile Include="Utils\GuidHelper.cs" />
+    <Compile Include="Utils\ImageHelper\ImageHelper.cs" />
+    <Compile Include="Utils\ImageHelper\WaterMark.cs" />
+    <Compile Include="Utils\IPHelper.cs" />
+    <Compile Include="Utils\JsonHelper.cs" />
+    <Compile Include="Utils\NumberConventer.cs" />
+    <Compile Include="Utils\QRCodeHelper.cs" />
+    <Compile Include="Utils\SerializationHelper.cs" />
+    <Compile Include="Utils\SerializeMemoryHelper.cs" />
+    <Compile Include="Utils\ThreadManager.cs" />
+    <Compile Include="Utils\ValidatedHelper.cs" />
+    <Compile Include="Domain\Entities\Entity.cs" />
+    <Compile Include="Domain\Entities\EntityBase.cs" />
+    <Compile Include="Events\ActionDelegatedEventHandler.cs" />
+    <Compile Include="Events\EventData.cs" />
+    <Compile Include="Events\HandlesAsynchronouslyAttribute.cs" />
+    <Compile Include="Events\IEventData.cs" />
+    <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="Events\Bus\EventBus.cs" />
+    <Compile Include="Events\Bus\IEventBus.cs" />
+    <Compile Include="Events\Bus\MemoryEventBus.cs" />
+    <Compile Include="Events\Bus\RedisEventBus.cs" />
+    <Compile Include="IoC\IContainer.cs" />
+    <Compile Include="IoC\Interception\ExceptionLoggingBehavior.cs" />
+    <Compile Include="IoC\Interception\InterceptionBase.cs" />
+    <Compile Include="IoC\IoCFactory.cs" />
+    <Compile Include="IoC\ServiceLocator.cs" />
+    <Compile Include="IoC\Implements\UnityAdapterContainer.cs" />
+    <Compile Include="IoC\Utils.cs" />
+    <Compile Include="LinqExtensions\DbCommandInterceptorExtensions.cs" />
+    <Compile Include="IRepositories\Commons\IOrderable.cs" />
+    <Compile Include="LinqExtensions\IQueryableExtensions.cs" />
+    <Compile Include="LinqExtensions\ObjectContextExtensions.cs" />
+    <Compile Include="IRepositories\Commons\Orderable.cs" />
+    <Compile Include="IRepositories\Commons\OrderType.cs" />
+    <Compile Include="IRepositories\Commons\SaveAction.cs" />
+    <Compile Include="IRepositories\Commons\SavedEventArgs.cs" />
+    <Compile Include="LinqExtensions\SqlFunctionExtensions.cs" />
+    <Compile Include="IRepositories\DistributedReadWriteForEF\DistributedReadWriteManager.cs" />
+    <Compile Include="IRepositories\DistributedReadWriteForEF\DistributedReadWriteSection.cs" />
+    <Compile Include="IRepositories\DistributedReadWriteForEF\DistributedReadWriteSectionHandler.cs" />
+    <Compile Include="IRepositories\DistributedReadWriteForEF\ReadWriteCommandInterceptor.cs" />
+    <Compile Include="IRepositories\IExtensionRepository.cs" />
+    <Compile Include="IRepositories\IOrderableRepository.cs" />
+    <Compile Include="IRepositories\IRepository.cs" />
+    <Compile Include="WebExtensions\MvcExtensions.cs" />
+    <Compile Include="UoW\IUnitOfWork.cs" />
+    <Compile Include="Logger\ILogger.cs" />
+    <Compile Include="Logger\Implements\LoggerBase.cs" />
+    <Compile Include="Logger\LoggerFactory.cs" />
+    <Compile Include="Logger\Implements\NormalLogger.cs" />
+    <Compile Include="Messaging\Implements\EmailMessageManager.cs" />
+    <Compile Include="Messaging\Implements\IMessageManager.cs" />
+    <Compile Include="Messaging\Implements\RTXMessageManager.cs" />
+    <Compile Include="Messaging\Implements\SMSMessageManager.cs" />
+    <Compile Include="Messaging\Implements\XMPPMessageManager.cs" />
+    <Compile Include="Messaging\MessageContext.cs" />
+    <Compile Include="Messaging\MessageContextEventArgs.cs" />
+    <Compile Include="Messaging\MessageFactory.cs" />
+    <Compile Include="Messaging\MessageType.cs" />
+    <Compile Include="Paging\ListPageList.cs" />
+    <Compile Include="Paging\PagedResult.cs" />
+    <Compile Include="Paging\PageList.cs" />
+    <Compile Include="Paging\PageListAppend.cs" />
+    <Compile Include="Paging\PageListBase.cs" />
+    <Compile Include="Paging\PageParameters.cs" />
+    <Compile Include="Paging\PagedResultHelper.cs" />
+    <Compile Include="Paging\PagerHelper.cs" />
+    <Compile Include="Paging\PageUI.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedisClient\RedisManager.cs" />
+    <Compile Include="Specification\internal\DirectSpecification.cs" />
+    <Compile Include="Specification\internal\AndSpecification.cs" />
+    <Compile Include="Specification\internal\CompositeSpecification.cs" />
+    <Compile Include="Specification\ExpressionBuilder.cs" />
+    <Compile Include="Specification\internal\NotSpecification.cs" />
+    <Compile Include="Specification\internal\OrSpecification.cs" />
+    <Compile Include="Specification\internal\ParametersRebinder.cs" />
+    <Compile Include="Specification\ISpecification.cs" />
+    <Compile Include="Specification\Specification.cs" />
+    <Compile Include="Specification\TrueSpecification.cs" />
+    <Compile Include="UoW\UnitOfWork.cs" />
+    <Compile Include="UoW\SqlType.cs" />
+    <Compile Include="Utils\WebConfig.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Authorization\Api\Configs\ApiValidateModelConfig.Config" />
+    <None Include="CachingQueue\配置.config" />
+    <None Include="CachingDataSet\App.Config" />
+    <None Include="ConfigConstants\App.config" />
+    <None Include="ConfigConstants\ConfigConstants.xsc">
+      <DependentUpon>ConfigConstants.xsd</DependentUpon>
+    </None>
+    <None Include="ConfigConstants\ConfigConstants.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ConfigConstants.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ConfigConstants\ConfigConstants.xss">
+      <DependentUpon>ConfigConstants.xsd</DependentUpon>
+    </None>
+    <None Include="FastDFS\App.config" />
+    <None Include="HttpExtensions\App.config" />
+    <None Include="LindMQ\App.config" />
+    <None Include="Logger\App.config" />
+    <None Include="MongoDbClient\App.config" />
+    <None Include="OnlinePay\WebPay\App.config" />
+    <None Include="OnlinePay\WebPay\ChinaPay\MerPrK_808080450104713_20110513152540.key" />
+    <None Include="OnlinePay\WebPay\ChinaPay\PgPubk.key" />
+    <None Include="FastSocket\FastSocket.Client\socketClient.cd" />
+    <None Include="FastSocket\FastSocket.Server\app.config" />
+    <None Include="FastSocket\FastSocket.Server\类关系图.cd" />
+    <None Include="OnlinePay\WeixinJSApi\微信公众号支付部署.docx" />
+    <None Include="OnlinePay\Weixin\WxPaymentConfig.Config" />
+    <LibraryProjectZip Include="RedisClient\redis64-2.6.12.1.zip" />
+    <None Include="Thrift\Demo\IL\HelloThriftspace.thrift" />
+    <None Include="Utils\Encryptor\Facade.sequencediagram" />
+    <None Include="Events\配置.config" />
+    <None Include="IoC\App.config" />
+    <None Include="IoC\Interception\IoC.config" />
+    <None Include="packages.config" />
+    <None Include="RedisClient\app.config" />
+    <None Include="Lind.DDD依赖包.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Authorization\分布式session使用说明.txt" />
+    <TransformFile Include="CatClientPur\CatConfig.xml" />
+    <TransformFile Include="ConfigConstants\ConfigConstants.xml" />
+    <Content Include="ECharts\map.js" />
+    <Content Include="ECharts\map.html" />
+    <Content Include="Messaging\readme.txt" />
+    <Content Include="OnlinePay\WebPay\ChinaPay\NetPay.dll" />
+    <TransformFile Include="Quartz\quartz_jobs.xml" />
+    <Content Include="OnlinePay\WeixinJSApi\demo.html" />
+    <Content Include="OnlinePay\WeixinJSApi\微信获openid的步骤.txt" />
+    <Content Include="Quartz\注册服务方法.txt" />
+    <Content Include="RedisClient\主从同步.txt" />
+    <Content Include="Thrift\thrift-0.9.1.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Utils\Encryptor\Facade.sequencediagram.layout">
+      <DependentUpon>Facade.sequencediagram</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

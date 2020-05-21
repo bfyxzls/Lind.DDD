@@ -1,0 +1,900 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Test_Code_FirstModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Test_Code_FirstModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Test_Code_FirstModel.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebConfirmRecords" EntityType="Test_Code_FirstModel.Store.WebConfirmRecords" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebDataCtrls" EntityType="Test_Code_FirstModel.Store.WebDataCtrls" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebDataSettings" EntityType="Test_Code_FirstModel.Store.WebDataSettings" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebDepartments" EntityType="Test_Code_FirstModel.Store.WebDepartments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebDepartments_WebManageUsers_R" EntityType="Test_Code_FirstModel.Store.WebDepartments_WebManageUsers_R" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebLoggers" EntityType="Test_Code_FirstModel.Store.WebLoggers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebManageMenus" EntityType="Test_Code_FirstModel.Store.WebManageMenus" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebManageRoles" EntityType="Test_Code_FirstModel.Store.WebManageRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebManageRoles_WebManageMenus_Authority_R" EntityType="Test_Code_FirstModel.Store.WebManageRoles_WebManageMenus_Authority_R" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebManageRoles_WebManageUsers_R" EntityType="Test_Code_FirstModel.Store.WebManageRoles_WebManageUsers_R" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebManageUsers" EntityType="Test_Code_FirstModel.Store.WebManageUsers" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId" Association="Test_Code_FirstModel.Store.FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId">
+            <End Role="WebDataCtrls" EntitySet="WebDataCtrls" />
+            <End Role="WebDataSettings" EntitySet="WebDataSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id" Association="Test_Code_FirstModel.Store.FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebDataSettings" EntitySet="WebDataSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId" Association="Test_Code_FirstModel.Store.FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId">
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+            <End Role="WebDataSettings" EntitySet="WebDataSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDepartments_dbo_WebDepartments_ParentID" Association="Test_Code_FirstModel.Store.FK_dbo_WebDepartments_dbo_WebDepartments_ParentID">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebDepartments1" EntitySet="WebDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDepartments_WebManageUsers_R_dbo_WebDepartments_DeptId" Association="Test_Code_FirstModel.Store.FK_dbo_WebDepartments_WebManageUsers_R_dbo_WebDepartments_DeptId">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebDepartments_WebManageUsers_R" EntitySet="WebDepartments_WebManageUsers_R" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDepartments_WebManageUsers_R_dbo_WebManageUsers_UserId" Association="Test_Code_FirstModel.Store.FK_dbo_WebDepartments_WebManageUsers_R_dbo_WebManageUsers_UserId">
+            <End Role="WebManageUsers" EntitySet="WebManageUsers" />
+            <End Role="WebDepartments_WebManageUsers_R" EntitySet="WebDepartments_WebManageUsers_R" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID" Association="Test_Code_FirstModel.Store.FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID">
+            <End Role="WebManageMenus" EntitySet="WebManageMenus" />
+            <End Role="WebManageMenus1" EntitySet="WebManageMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID" Association="Test_Code_FirstModel.Store.FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId" Association="Test_Code_FirstModel.Store.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId">
+            <End Role="WebManageMenus" EntitySet="WebManageMenus" />
+            <End Role="WebManageRoles_WebManageMenus_Authority_R" EntitySet="WebManageRoles_WebManageMenus_Authority_R" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId" Association="Test_Code_FirstModel.Store.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId">
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+            <End Role="WebManageRoles_WebManageMenus_Authority_R" EntitySet="WebManageRoles_WebManageMenus_Authority_R" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_WebManageUsers_R_dbo_WebManageRoles_RoleId" Association="Test_Code_FirstModel.Store.FK_dbo_WebManageRoles_WebManageUsers_R_dbo_WebManageRoles_RoleId">
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+            <End Role="WebManageRoles_WebManageUsers_R" EntitySet="WebManageRoles_WebManageUsers_R" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_WebManageUsers_R_dbo_WebManageUsers_UserId" Association="Test_Code_FirstModel.Store.FK_dbo_WebManageRoles_WebManageUsers_R_dbo_WebManageUsers_UserId">
+            <End Role="WebManageUsers" EntitySet="WebManageUsers" />
+            <End Role="WebManageRoles_WebManageUsers_R" EntitySet="WebManageRoles_WebManageUsers_R" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="ContextKey" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="WebConfirmRecords">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="AuditStatus" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ToUserId" Type="int" Nullable="false" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebDataCtrls">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DataCtrlName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DataCtrlType" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DataCtrlField" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DataCtrlApi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebDataSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WebDataCtrlId" Type="int" Nullable="false" />
+          <Property Name="WebManageRolesId" Type="int" Nullable="false" />
+          <Property Name="ObjectIdArr" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+          <Property Name="WebDepartments_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="WebDepartments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" />
+          <Property Name="SortNumber" Type="int" Nullable="false" />
+          <Property Name="Operator" Type="nvarchar(max)" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebDepartments_WebManageUsers_R">
+          <Key>
+            <PropertyRef Name="DeptId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="DeptId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebLoggers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+          <Property Name="ControllerName" Type="nvarchar(max)" />
+          <Property Name="ActionName" Type="nvarchar(max)" />
+          <Property Name="Authority" Type="nvarchar(max)" />
+          <Property Name="RequestParams" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebManageMenus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar(max)" />
+          <Property Name="About" Type="nvarchar(max)" />
+          <Property Name="SortNumber" Type="int" Nullable="false" />
+          <Property Name="Operator" Type="nvarchar(max)" />
+          <Property Name="IsDisplayMenuTree" Type="bit" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebManageRoles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="About" Type="nvarchar(max)" />
+          <Property Name="SortNumber" Type="int" Nullable="false" />
+          <Property Name="Operator" Type="nvarchar(max)" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebManageRoles_WebManageMenus_Authority_R">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="MenuId" Type="int" Nullable="false" />
+          <Property Name="Authority" Type="int" Nullable="false" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebManageRoles_WebManageUsers_R">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebManageUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RealName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Operator" Type="nvarchar(max)" />
+          <Property Name="WebSystemID" Type="int" />
+          <Property Name="ThridUserId" Type="nvarchar(max)" />
+          <Property Name="DataCreateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataUpdateDateTime" Type="datetime" Nullable="false" />
+          <Property Name="DataStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId">
+          <End Role="WebDataCtrls" Type="Test_Code_FirstModel.Store.WebDataCtrls" Multiplicity="1" />
+          <End Role="WebDataSettings" Type="Test_Code_FirstModel.Store.WebDataSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDataCtrls">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDataSettings">
+              <PropertyRef Name="WebDataCtrlId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id">
+          <End Role="WebDepartments" Type="Test_Code_FirstModel.Store.WebDepartments" Multiplicity="0..1" />
+          <End Role="WebDataSettings" Type="Test_Code_FirstModel.Store.WebDataSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDepartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDataSettings">
+              <PropertyRef Name="WebDepartments_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId">
+          <End Role="WebManageRoles" Type="Test_Code_FirstModel.Store.WebManageRoles" Multiplicity="1" />
+          <End Role="WebDataSettings" Type="Test_Code_FirstModel.Store.WebDataSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDataSettings">
+              <PropertyRef Name="WebManageRolesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDepartments_dbo_WebDepartments_ParentID">
+          <End Role="WebDepartments" Type="Test_Code_FirstModel.Store.WebDepartments" Multiplicity="0..1" />
+          <End Role="WebDepartments1" Type="Test_Code_FirstModel.Store.WebDepartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDepartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDepartments1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDepartments_WebManageUsers_R_dbo_WebDepartments_DeptId">
+          <End Role="WebDepartments" Type="Test_Code_FirstModel.Store.WebDepartments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WebDepartments_WebManageUsers_R" Type="Test_Code_FirstModel.Store.WebDepartments_WebManageUsers_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDepartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDepartments_WebManageUsers_R">
+              <PropertyRef Name="DeptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDepartments_WebManageUsers_R_dbo_WebManageUsers_UserId">
+          <End Role="WebManageUsers" Type="Test_Code_FirstModel.Store.WebManageUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WebDepartments_WebManageUsers_R" Type="Test_Code_FirstModel.Store.WebDepartments_WebManageUsers_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDepartments_WebManageUsers_R">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID">
+          <End Role="WebManageMenus" Type="Test_Code_FirstModel.Store.WebManageMenus" Multiplicity="0..1" />
+          <End Role="WebManageMenus1" Type="Test_Code_FirstModel.Store.WebManageMenus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageMenus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageMenus1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID">
+          <End Role="WebDepartments" Type="Test_Code_FirstModel.Store.WebDepartments" Multiplicity="1" />
+          <End Role="WebManageRoles" Type="Test_Code_FirstModel.Store.WebManageRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDepartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId">
+          <End Role="WebManageMenus" Type="Test_Code_FirstModel.Store.WebManageMenus" Multiplicity="1" />
+          <End Role="WebManageRoles_WebManageMenus_Authority_R" Type="Test_Code_FirstModel.Store.WebManageRoles_WebManageMenus_Authority_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageMenus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles_WebManageMenus_Authority_R">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId">
+          <End Role="WebManageRoles" Type="Test_Code_FirstModel.Store.WebManageRoles" Multiplicity="1" />
+          <End Role="WebManageRoles_WebManageMenus_Authority_R" Type="Test_Code_FirstModel.Store.WebManageRoles_WebManageMenus_Authority_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles_WebManageMenus_Authority_R">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_WebManageUsers_R_dbo_WebManageRoles_RoleId">
+          <End Role="WebManageRoles" Type="Test_Code_FirstModel.Store.WebManageRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WebManageRoles_WebManageUsers_R" Type="Test_Code_FirstModel.Store.WebManageRoles_WebManageUsers_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles_WebManageUsers_R">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_WebManageUsers_R_dbo_WebManageUsers_UserId">
+          <End Role="WebManageUsers" Type="Test_Code_FirstModel.Store.WebManageUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WebManageRoles_WebManageUsers_R" Type="Test_Code_FirstModel.Store.WebManageRoles_WebManageUsers_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageUsers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles_WebManageUsers_R">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Test_Code_FirstModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Test_Code_FirstEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Test_Code_FirstModel.C__MigrationHistory" />
+          <EntitySet Name="WebConfirmRecords" EntityType="Test_Code_FirstModel.WebConfirmRecords" />
+          <EntitySet Name="WebDataCtrls" EntityType="Test_Code_FirstModel.WebDataCtrls" />
+          <EntitySet Name="WebDataSettings" EntityType="Test_Code_FirstModel.WebDataSettings" />
+          <EntitySet Name="WebDepartments" EntityType="Test_Code_FirstModel.WebDepartments" />
+          <EntitySet Name="WebLoggers" EntityType="Test_Code_FirstModel.WebLoggers" />
+          <EntitySet Name="WebManageMenus" EntityType="Test_Code_FirstModel.WebManageMenus" />
+          <EntitySet Name="WebManageRoles" EntityType="Test_Code_FirstModel.WebManageRoles" />
+          <EntitySet Name="WebManageRoles_WebManageMenus_Authority_R" EntityType="Test_Code_FirstModel.WebManageRoles_WebManageMenus_Authority_R" />
+          <EntitySet Name="WebManageUsers" EntityType="Test_Code_FirstModel.WebManageUsers" />
+          <AssociationSet Name="FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId" Association="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId">
+            <End Role="WebDataCtrls" EntitySet="WebDataCtrls" />
+            <End Role="WebDataSettings" EntitySet="WebDataSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id" Association="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebDataSettings" EntitySet="WebDataSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId" Association="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId">
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+            <End Role="WebDataSettings" EntitySet="WebDataSettings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebDepartments_dbo_WebDepartments_ParentID" Association="Test_Code_FirstModel.FK_dbo_WebDepartments_dbo_WebDepartments_ParentID">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebDepartments1" EntitySet="WebDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID" Association="Test_Code_FirstModel.FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID" Association="Test_Code_FirstModel.FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID">
+            <End Role="WebManageMenus" EntitySet="WebManageMenus" />
+            <End Role="WebManageMenus1" EntitySet="WebManageMenus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId" Association="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId">
+            <End Role="WebManageMenus" EntitySet="WebManageMenus" />
+            <End Role="WebManageRoles_WebManageMenus_Authority_R" EntitySet="WebManageRoles_WebManageMenus_Authority_R" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId" Association="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId">
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+            <End Role="WebManageRoles_WebManageMenus_Authority_R" EntitySet="WebManageRoles_WebManageMenus_Authority_R" />
+          </AssociationSet>
+          <AssociationSet Name="WebDepartments_WebManageUsers_R" Association="Test_Code_FirstModel.WebDepartments_WebManageUsers_R">
+            <End Role="WebDepartments" EntitySet="WebDepartments" />
+            <End Role="WebManageUsers" EntitySet="WebManageUsers" />
+          </AssociationSet>
+          <AssociationSet Name="WebManageRoles_WebManageUsers_R" Association="Test_Code_FirstModel.WebManageRoles_WebManageUsers_R">
+            <End Role="WebManageRoles" EntitySet="WebManageRoles" />
+            <End Role="WebManageUsers" EntitySet="WebManageUsers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Type="String" Name="MigrationId" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContextKey" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="Model" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="ProductVersion" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WebConfirmRecords">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AuditStatus" Nullable="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ToUserId" Nullable="false" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebDataCtrls">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="DataCtrlName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DataCtrlType" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DataCtrlField" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DataCtrlApi" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+          <NavigationProperty Name="WebDataSettings" Relationship="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId" FromRole="WebDataCtrls" ToRole="WebDataSettings" />
+        </EntityType>
+        <EntityType Name="WebDataSettings">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="WebDataCtrlId" Nullable="false" />
+          <Property Type="Int32" Name="WebManageRolesId" Nullable="false" />
+          <Property Type="String" Name="ObjectIdArr" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+          <Property Type="Int32" Name="WebDepartments_Id" />
+          <NavigationProperty Name="WebDataCtrls" Relationship="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId" FromRole="WebDataSettings" ToRole="WebDataCtrls" />
+          <NavigationProperty Name="WebDepartments" Relationship="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id" FromRole="WebDataSettings" ToRole="WebDepartments" />
+          <NavigationProperty Name="WebManageRoles" Relationship="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId" FromRole="WebDataSettings" ToRole="WebManageRoles" />
+        </EntityType>
+        <EntityType Name="WebDepartments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="About" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortNumber" Nullable="false" />
+          <Property Type="String" Name="Operator" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Level" Nullable="false" />
+          <Property Type="Int32" Name="ParentID" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+          <NavigationProperty Name="WebDataSettings" Relationship="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id" FromRole="WebDepartments" ToRole="WebDataSettings" />
+          <NavigationProperty Name="WebDepartments1" Relationship="Test_Code_FirstModel.FK_dbo_WebDepartments_dbo_WebDepartments_ParentID" FromRole="WebDepartments" ToRole="WebDepartments1" />
+          <NavigationProperty Name="WebDepartments2" Relationship="Test_Code_FirstModel.FK_dbo_WebDepartments_dbo_WebDepartments_ParentID" FromRole="WebDepartments1" ToRole="WebDepartments" />
+          <NavigationProperty Name="WebManageRoles" Relationship="Test_Code_FirstModel.FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID" FromRole="WebDepartments" ToRole="WebManageRoles" />
+          <NavigationProperty Name="WebManageUsers" Relationship="Test_Code_FirstModel.WebDepartments_WebManageUsers_R" FromRole="WebDepartments" ToRole="WebManageUsers" />
+        </EntityType>
+        <EntityType Name="WebLoggers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="UserName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ControllerName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ActionName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Authority" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RequestParams" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WebManageMenus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Level" Nullable="false" />
+          <Property Type="String" Name="LinkUrl" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="About" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortNumber" Nullable="false" />
+          <Property Type="String" Name="Operator" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDisplayMenuTree" Nullable="false" />
+          <Property Type="Int32" Name="ParentID" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+          <NavigationProperty Name="WebManageMenus1" Relationship="Test_Code_FirstModel.FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID" FromRole="WebManageMenus" ToRole="WebManageMenus1" />
+          <NavigationProperty Name="WebManageMenus2" Relationship="Test_Code_FirstModel.FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID" FromRole="WebManageMenus1" ToRole="WebManageMenus" />
+          <NavigationProperty Name="WebManageRoles_WebManageMenus_Authority_R" Relationship="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId" FromRole="WebManageMenus" ToRole="WebManageRoles_WebManageMenus_Authority_R" />
+        </EntityType>
+        <EntityType Name="WebManageRoles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="About" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SortNumber" Nullable="false" />
+          <Property Type="String" Name="Operator" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DepartmentID" Nullable="false" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+          <NavigationProperty Name="WebDataSettings" Relationship="Test_Code_FirstModel.FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId" FromRole="WebManageRoles" ToRole="WebDataSettings" />
+          <NavigationProperty Name="WebDepartments" Relationship="Test_Code_FirstModel.FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID" FromRole="WebManageRoles" ToRole="WebDepartments" />
+          <NavigationProperty Name="WebManageRoles_WebManageMenus_Authority_R" Relationship="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId" FromRole="WebManageRoles" ToRole="WebManageRoles_WebManageMenus_Authority_R" />
+          <NavigationProperty Name="WebManageUsers" Relationship="Test_Code_FirstModel.WebManageRoles_WebManageUsers_R" FromRole="WebManageRoles" ToRole="WebManageUsers" />
+        </EntityType>
+        <EntityType Name="WebManageRoles_WebManageMenus_Authority_R">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RoleId" Nullable="false" />
+          <Property Type="Int32" Name="MenuId" Nullable="false" />
+          <Property Type="Int32" Name="Authority" Nullable="false" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+          <NavigationProperty Name="WebManageMenus" Relationship="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId" FromRole="WebManageRoles_WebManageMenus_Authority_R" ToRole="WebManageMenus" />
+          <NavigationProperty Name="WebManageRoles" Relationship="Test_Code_FirstModel.FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId" FromRole="WebManageRoles_WebManageMenus_Authority_R" ToRole="WebManageRoles" />
+        </EntityType>
+        <EntityType Name="WebManageUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LoginName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RealName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Mobile" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Operator" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="WebSystemID" />
+          <Property Type="String" Name="ThridUserId" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DataCreateDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataUpdateDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="DataStatus" Nullable="false" />
+          <NavigationProperty Name="WebDepartments" Relationship="Test_Code_FirstModel.WebDepartments_WebManageUsers_R" FromRole="WebManageUsers" ToRole="WebDepartments" />
+          <NavigationProperty Name="WebManageRoles" Relationship="Test_Code_FirstModel.WebManageRoles_WebManageUsers_R" FromRole="WebManageUsers" ToRole="WebManageRoles" />
+        </EntityType>
+        <Association Name="FK_dbo_WebDataSettings_dbo_WebDataCtrls_WebDataCtrlId">
+          <End Type="Test_Code_FirstModel.WebDataCtrls" Role="WebDataCtrls" Multiplicity="1" />
+          <End Type="Test_Code_FirstModel.WebDataSettings" Role="WebDataSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDataCtrls">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDataSettings">
+              <PropertyRef Name="WebDataCtrlId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDataSettings_dbo_WebDepartments_WebDepartments_Id">
+          <End Type="Test_Code_FirstModel.WebDepartments" Role="WebDepartments" Multiplicity="0..1" />
+          <End Type="Test_Code_FirstModel.WebDataSettings" Role="WebDataSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDepartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDataSettings">
+              <PropertyRef Name="WebDepartments_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDataSettings_dbo_WebManageRoles_WebManageRolesId">
+          <End Type="Test_Code_FirstModel.WebManageRoles" Role="WebManageRoles" Multiplicity="1" />
+          <End Type="Test_Code_FirstModel.WebDataSettings" Role="WebDataSettings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDataSettings">
+              <PropertyRef Name="WebManageRolesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebDepartments_dbo_WebDepartments_ParentID">
+          <End Type="Test_Code_FirstModel.WebDepartments" Role="WebDepartments" Multiplicity="0..1" />
+          <End Type="Test_Code_FirstModel.WebDepartments" Role="WebDepartments1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDepartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebDepartments1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_dbo_WebDepartments_DepartmentID">
+          <End Type="Test_Code_FirstModel.WebDepartments" Role="WebDepartments" Multiplicity="1" />
+          <End Type="Test_Code_FirstModel.WebManageRoles" Role="WebManageRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebDepartments">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageMenus_dbo_WebManageMenus_ParentID">
+          <End Type="Test_Code_FirstModel.WebManageMenus" Role="WebManageMenus" Multiplicity="0..1" />
+          <End Type="Test_Code_FirstModel.WebManageMenus" Role="WebManageMenus1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageMenus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageMenus1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageMenus_MenuId">
+          <End Type="Test_Code_FirstModel.WebManageMenus" Role="WebManageMenus" Multiplicity="1" />
+          <End Type="Test_Code_FirstModel.WebManageRoles_WebManageMenus_Authority_R" Role="WebManageRoles_WebManageMenus_Authority_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageMenus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles_WebManageMenus_Authority_R">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_WebManageRoles_WebManageMenus_Authority_R_dbo_WebManageRoles_RoleId">
+          <End Type="Test_Code_FirstModel.WebManageRoles" Role="WebManageRoles" Multiplicity="1" />
+          <End Type="Test_Code_FirstModel.WebManageRoles_WebManageMenus_Authority_R" Role="WebManageRoles_WebManageMenus_Authority_R" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WebManageRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebManageRoles_WebManageMenus_Authority_R">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WebDepartments_WebManageUsers_R">
+          <End Type="Test_Code_FirstModel.WebDepartments" Role="WebDepartments" Multiplicity="*" />
+          <End Type="Test_Code_FirstModel.WebManageUsers" Role="WebManageUsers" Multiplicity="*" />
+        </Association>
+        <Association Name="WebManageRoles_WebManageUsers_R">
+          <End Type="Test_Code_FirstModel.WebManageRoles" Role="WebManageRoles" Multiplicity="*" />
+          <End Type="Test_Code_FirstModel.WebManageUsers" Role="WebManageUsers" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Test_Code_FirstModelStoreContainer" CdmEntityContainer="Test_Code_FirstEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebConfirmRecords">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebConfirmRecords">
+              <MappingFragment StoreEntitySet="WebConfirmRecords">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AuditStatus" ColumnName="AuditStatus" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebDataCtrls">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebDataCtrls">
+              <MappingFragment StoreEntitySet="WebDataCtrls">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DataCtrlApi" ColumnName="DataCtrlApi" />
+                <ScalarProperty Name="DataCtrlField" ColumnName="DataCtrlField" />
+                <ScalarProperty Name="DataCtrlType" ColumnName="DataCtrlType" />
+                <ScalarProperty Name="DataCtrlName" ColumnName="DataCtrlName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebDataSettings">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebDataSettings">
+              <MappingFragment StoreEntitySet="WebDataSettings">
+                <ScalarProperty Name="WebDepartments_Id" ColumnName="WebDepartments_Id" />
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="ObjectIdArr" ColumnName="ObjectIdArr" />
+                <ScalarProperty Name="WebManageRolesId" ColumnName="WebManageRolesId" />
+                <ScalarProperty Name="WebDataCtrlId" ColumnName="WebDataCtrlId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebDepartments">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebDepartments">
+              <MappingFragment StoreEntitySet="WebDepartments">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="SortNumber" ColumnName="SortNumber" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebLoggers">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebLoggers">
+              <MappingFragment StoreEntitySet="WebLoggers">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RequestParams" ColumnName="RequestParams" />
+                <ScalarProperty Name="Authority" ColumnName="Authority" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebManageMenus">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebManageMenus">
+              <MappingFragment StoreEntitySet="WebManageMenus">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="IsDisplayMenuTree" ColumnName="IsDisplayMenuTree" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="SortNumber" ColumnName="SortNumber" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebManageRoles">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebManageRoles">
+              <MappingFragment StoreEntitySet="WebManageRoles">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="SortNumber" ColumnName="SortNumber" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebManageRoles_WebManageMenus_Authority_R">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebManageRoles_WebManageMenus_Authority_R">
+              <MappingFragment StoreEntitySet="WebManageRoles_WebManageMenus_Authority_R">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="Authority" ColumnName="Authority" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebManageUsers">
+            <EntityTypeMapping TypeName="Test_Code_FirstModel.WebManageUsers">
+              <MappingFragment StoreEntitySet="WebManageUsers">
+                <ScalarProperty Name="DataStatus" ColumnName="DataStatus" />
+                <ScalarProperty Name="DataUpdateDateTime" ColumnName="DataUpdateDateTime" />
+                <ScalarProperty Name="DataCreateDateTime" ColumnName="DataCreateDateTime" />
+                <ScalarProperty Name="ThridUserId" ColumnName="ThridUserId" />
+                <ScalarProperty Name="WebSystemID" ColumnName="WebSystemID" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="RealName" ColumnName="RealName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="WebDepartments_WebManageUsers_R" TypeName="Test_Code_FirstModel.WebDepartments_WebManageUsers_R" StoreEntitySet="WebDepartments_WebManageUsers_R">
+            <EndProperty Name="WebManageUsers">
+              <ScalarProperty Name="ID" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="WebDepartments">
+              <ScalarProperty Name="ID" ColumnName="DeptId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="WebManageRoles_WebManageUsers_R" TypeName="Test_Code_FirstModel.WebManageRoles_WebManageUsers_R" StoreEntitySet="WebManageRoles_WebManageUsers_R">
+            <EndProperty Name="WebManageUsers">
+              <ScalarProperty Name="ID" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="WebManageRoles">
+              <ScalarProperty Name="ID" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

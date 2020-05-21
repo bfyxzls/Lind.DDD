@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="ConfigModel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="PropertyChanged" type="xs:string" minOccurs="0" />
+        <xs:element name="Caching" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Provider" type="xs:string" minOccurs="0" />
+              <xs:element name="ExpireMinutes" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Queue" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" type="xs:string" minOccurs="0" />
+              <xs:element name="FilePath" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Logger" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" type="xs:string" minOccurs="0" />
+              <xs:element name="Level" type="xs:string" minOccurs="0" />
+              <xs:element name="ProjectName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Pub_Sub" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Interval" type="xs:string" minOccurs="0" />
+              <xs:element name="RepeatNum" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MongoDB" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Host" type="xs:string" minOccurs="0" />
+              <xs:element name="DbName" type="xs:string" minOccurs="0" />
+              <xs:element name="UserName" type="xs:string" minOccurs="0" />
+              <xs:element name="Password" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Redis" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Host" type="xs:string" minOccurs="0" />
+              <xs:element name="Proxy" type="xs:integer" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Messaging" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Email_UserName" type="xs:string" minOccurs="0" />
+              <xs:element name="Email_Password" type="xs:string" minOccurs="0" />
+              <xs:element name="Email_Host" type="xs:string" minOccurs="0" />
+              <xs:element name="Email_Port" type="xs:string" minOccurs="0" />
+              <xs:element name="Email_Address" type="xs:string" minOccurs="0" />
+              <xs:element name="Email_DisplayName" type="xs:string" minOccurs="0" />
+              <xs:element name="RtxApi" type="xs:string" minOccurs="0" />
+              <xs:element name="SMSGateway" type="xs:string" minOccurs="0" />
+              <xs:element name="SMSSignType" type="xs:string" minOccurs="0" />
+              <xs:element name="SMSCharset" type="xs:string" minOccurs="0" />
+              <xs:element name="SMSKey" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DomainEvent" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" type="xs:string" minOccurs="0" />
+              <xs:element name="RedisKey" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Socket" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ServerHost" type="xs:string" minOccurs="0" />
+              <xs:element name="DataPort" type="xs:string" minOccurs="0" />
+              <xs:element name="CommandPort" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Cat" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CatDomain" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Id" type="xs:string" minOccurs="0" />
+                    <xs:element name="Enabled" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="CatServers" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="CatServer" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Ip" type="xs:string" minOccurs="0" />
+                          <xs:element name="Port" type="xs:string" minOccurs="0" />
+                          <xs:element name="WebPort" type="xs:string" minOccurs="0" />
+                          <xs:element name="Enabled" type="xs:string" minOccurs="0" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Versions" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Version" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Code" type="xs:string" minOccurs="0" />
+                    <xs:element name="Info" type="xs:string" minOccurs="0" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IocContaion" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IoCType" type="xs:string" minOccurs="0" />
+              <xs:element name="AoP_CacheStrategy" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SSO" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Domain" type="xs:string" minOccurs="0" />
+              <xs:element name="TokenKey" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="ConfigModel" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

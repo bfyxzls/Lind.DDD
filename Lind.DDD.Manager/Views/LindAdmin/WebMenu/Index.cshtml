@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Lind.DDD.Manager.Models.WebManageMenus>
+
+@{
+    ViewBag.Title = "菜单管理";
+}
+<script type="text/javascript">
+    $(function () {
+
+        $("#menu_Tree").bind("loaded.jstree", function (e, data) {
+            data.inst.open_all(-1); // -1默认全部展开节点 
+        }).jstree({
+            "plugins": ["themes", "html_data"],
+            "core": { "initially_open": ["DepartmentID_node1"] }
+        });
+    });
+</script>
+
+@Html.GeneratorMenuTree(true)

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebManageRoles>
+@{
+    ViewBag.Title = "角色列表";
+    int total = Convert.ToInt32(ViewBag.TotalRecord);
+}
+<form class="form-inline" novalidate="novalidate">
+    @Html.Action("Dept_SelectList", "AdminCommon")
+    <input type="button" onclick="search()" value="查询" class="btn btn-primary" />
+    <a class="btn btn-success" href="/WebRole/Create">添加一个</a>
+</form>
+<p></p>
+
+@Html.BindToTable(Model, (long)(Lind.DDD.Authorization.Authority.Detail | Lind.DDD.Authorization.Authority.Edit | Lind.DDD.Authorization.Authority.Delete)
+                       , i => i.RoleName
+                       , i => i.SortNumber
+                       , i => i.About)
+@Html.GeneratePagger(total)
+
+<script>
+    function search() {
+        var deptIdStr = '';
+        $("select[name=DeptId]").each(function () {
+            if ($(this).val() > 0)
+                deptIdStr += $(this).val() + ",";
+        });
+        var arr = deptIdStr.substring(0, deptIdStr.length - 1).split(",");
+        location.href = "?deptId=" + arr.pop();
+    }
+
+
+  
+</script>

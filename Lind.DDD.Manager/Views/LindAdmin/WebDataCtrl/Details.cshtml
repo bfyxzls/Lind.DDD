@@ -1,0 +1,11 @@
+﻿@model WebDataCtrl
+@{
+    ViewBag.Title = "数据集类型详情";
+    
+}
+@Html.BindToDetail(Model
+, i => i.DataCtrlName
+, i => i.DataCtrlType
+, i => i.DataCtrlField
+, i => i.DataCtrlApi
+, i => i.Description)

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Lind.DDD.Web.Models.OrderInfo>
+@using Lind.DDD.Presentation;
+@{
+    ViewBag.Title = "我的订单";
+    decimal sum = 0;
+    string status = ViewBag.OrderStatus;
+}
+<form class="form-inline" method="post">
+    <div class="form-group">
+        @Html.DropDownListEnumFor(typeof(Lind.DDD.Web.Enums.OrderStatus), status)
+        <button>查询</button>
+    </div>
+</form>
+<table class="gridtable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserInfoName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCreateDateTime)
+        </th>
+        <th>购买的商品</th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        @if (Lind.DDD.Authorization.CurrentUser.IsLogin
+                        && Lind.DDD.Authorization.CurrentUser.Role == Lind.DDD.Web.Enums.UserRole.Manager.ToString())
+        {
+            <th style="width: 222px;"></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        sum += item.OrderPrice;
+        <tr class="@(item.OrderStatus == Lind.DDD.Web.Enums.OrderStatus.Paid ? "warning" : item.OrderStatus == Lind.DDD.Web.Enums.OrderStatus.Signed ? "success" : "")">
+            <td>
+                @Html.DisplayFor(modelItem => item.UserInfoName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCreateDateTime)
+            </td>
+            <td>@foreach (var detail in item.OrderDetail)
+                { 
+                <p>@detail.ProductName</p>
+                }
+
+            </td>
+            <td>
+                @Html.DisplayEnumFor(modelItem => item.OrderStatus)
+            </td>
+
+            @if (Lind.DDD.Authorization.CurrentUser.IsLogin
+                        && Lind.DDD.Authorization.CurrentUser.Role == Lind.DDD.Web.Enums.UserRole.Manager.ToString())
+            {
+                <td>
+                    <span>
+                        <a  class="btn btn-primary btn-sm" href="/Order/Paid/@item.Id">付款</a>
+                        <a  class="btn btn-default btn-sm" href="/Order/Picked/@item.Id">拣货</a>
+                        <a  class="btn btn-warning btn-sm" href="/Order/Dispatched/@item.Id">发货</a>
+                        <a  class="btn btn-success btn-sm" href="/Order/Signed/@item.Id">签收</a>
+                    </span>
+
+                </td>
+            }
+
+        </tr>
+    }
+
+    <tr>
+        <td colspan="6">总计：<span style="color: green; font-weight: bold">@sum</span> 元</td>
+    </tr>
+</table>

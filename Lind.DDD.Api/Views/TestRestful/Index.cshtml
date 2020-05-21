@@ -1,0 +1,107 @@
+﻿@model Lind.DDD.Paging.PagedList<Lind.DDD.Api.Models.TestApiModel>
+@using Lind.DDD.Paging;
+@{
+    ViewBag.Title = "从api返回数据列表";
+}
+
+<h2>从API服务取的数据列表</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Father)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Info)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deposit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderList)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Title)
+                <br />
+
+                @if (item.Category != null)
+                { 
+                    <span>@(item.Category.Address == null ? "" : item.Category.Address.ToString())</span>
+                    <p>
+                        @if (item.Category.Address.OldAddress != null && item.Category.Address.OldAddress.Count > 0)
+                        {
+                            foreach (var inner in item.Category.Address.OldAddress)
+                            {
+                            <span style="color: green">@inner.Province</span>
+                            }
+                        }
+                    </p>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Father.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deposit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @if (item.OrderList != null && item.OrderList.Count > 0)
+                {
+                    foreach (var sub in item.OrderList)
+                    { 
+               
+                    <span>@sub.ProductName-</span>
+                    <span style="color: red;">@sub.Price￥</span>
+                        if (sub.Address != null)
+                        { 
+                    <span style="color: gray;">(产地：@sub.Address.Province)</span>
+                        }
+                    }
+                }
+
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.Pager(Model)

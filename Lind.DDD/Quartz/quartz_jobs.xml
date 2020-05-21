@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+  <schedule>
+    <job>
+      <name>Hello_Job</name>
+      <group>Hello_Jobgroup</group>
+      <description>jobDesciption1</description>
+      <job-type>Test.Hello_Job,Test</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+      <job-data-map>
+        <entry>
+          <key>IsFromToTime</key>
+          <value>0</value>
+        </entry>
+        <entry>
+          <key>OccurTimeRegionFrom</key>
+          <value>2015-04-01</value>
+        </entry>
+        <entry>
+          <key>OccurTimeRegionTo</key>
+          <value>2015-06-01</value>
+        </entry>
+      </job-data-map>
+    </job>
+    <trigger>
+      <cron>
+        <name>trigger1</name>
+        <group>triggerGroup1</group>
+        <description>SimpleTriggerDescription</description>
+        <job-name>Hello_Job</job-name>
+        <job-group>Hello_Jobgroup</job-group>
+        <cron-expression>0/5 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+</job-scheduling-data>

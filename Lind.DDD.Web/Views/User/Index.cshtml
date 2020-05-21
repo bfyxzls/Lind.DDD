@@ -1,0 +1,59 @@
+﻿@using Lind.DDD.Paging;
+@using Lind.DDD.Presentation;
+@model PagedList<Lind.DDD.Web.Models.UserInfo>
+@{
+    ViewBag.Title = "所有注册的用户列表";
+}
+
+
+
+<form class="form-inline" method="post">
+    @Html.ActionLink("添加一个用户", "Create")
+    <input type="text" name="keyword" value="@ViewBag.keyword"/>
+    <button>查询</button>
+</form>
+<table class="gridtable">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>@Html.DisplayNameFor(model => model.RealName)
+        </th>
+        <th>@Html.DisplayNameFor(model => model.UserExtension.NickName)
+        </th>
+        <th>@Html.DisplayNameFor(model => model.UserExtension.School)
+        </th>
+      
+        <th>余额</th>
+        <th style="width: 169px;"></th>
+    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserExtension.NickName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserExtension.School)
+            </td>
+            
+            <td>@Html.DisplayFor(modelItem => item.UserAccount.FirstOrDefault().Money)</td>
+            <td>
+                @Html.ActionLink("详细", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("编辑", "Edit", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                @Html.ActionLink("删除", "Delete", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" })
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="10">@Html.Pager(Model)</td>
+        </tr>
+    }
+</table>

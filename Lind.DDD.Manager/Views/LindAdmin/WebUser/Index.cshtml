@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Lind.DDD.Manager.Models.WebManageUsers>
+
+@{
+    ViewBag.Title = "管理用户";
+    int total = Convert.ToInt32(ViewBag.TotalRecord);
+}
+
+<form class="form-inline">
+    @Html.Action("Dept_Role_SelectList", "AdminCommon")
+    <div class="form-group">
+        <label for="exampleInputName2">开始日期</label>
+        <input type="text" name="startDate" id="startDate"  class="form-control form_datetime_start"  value="@Request.QueryString["startDate"]">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail2">结束日期</label>
+        <input name="endDate" id="endDate" type="text" class="form-control form_datetime_end"  value="@Request.QueryString["endDate"]">
+    </div>
+    <input type="button" onclick="search()" value="查询" class="btn btn-primary" />
+    @Html.ActionLink("添加一个", "Create", null, new { @class = "btn btn-success" })
+</form>
+
+<p></p>
+<table class="table table-hover table-bordered table-striped">
+    <tbody>
+        <tr>
+            <th>
+                <input type="checkbox" id="checkAll"></th>
+            <th>名称</th>
+            <th>部门</th>
+            <th>角色</th>
+            <th>电话</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var entity in Model)
+            { 
+            <tr>
+                <td>
+                    <input type="checkbox" value="@entity.Id" name="checkId"></td>
+                <td>@entity.LoginName</td>
+                <td>@string.Join(",", entity.WebDepartments.Select(i => i.Name))</td>
+                <td>@string.Join(",", entity.WebManageRoles.Select(i => i.RoleName))</td>
+                <td>@entity.Mobile</td>
+                <td>
+                    @{
+                var val = (Lind.DDD.Domain.Status)entity.DataStatus;
+                var info = "";
+                switch (val)
+                {
+                    case Lind.DDD.Domain.Status.Normal:
+                        info = val.GetDescription();
+                        break;
+                    case Lind.DDD.Domain.Status.Hidden:
+                        info = "<span style='color:green'>" + val.GetDescription() + "</span>";
+                        break;
+                    case Lind.DDD.Domain.Status.Freeze:
+                        info = "<span style='color:red'>" + val.GetDescription() + "</span>";
+                        break;
+                    case Lind.DDD.Domain.Status.Deleted:
+                        info = "<span style='color:gray'>" + val.GetDescription() + "</span>";
+                        break;
+                    default:
+                        info = "";
+                        break;
+                }
+                    }
+                    @Html.Raw(info)
+                </td>
+                <td>
+                    @Html.RoleHtmlTags((long)Lind.DDD.Authorization.Authority.Edit,
+                    @<a class="btn btn-primary btn-xs" onclick='detailDialog("@entity.Id")' href="#" data-target="#myModal" data-toggle="modal">查看</a>)&nbsp;&nbsp;
+                    @Html.RoleHtmlTags((long)Lind.DDD.Authorization.Authority.Edit,
+                    @<a href="/WebUser/Edit/@entity.Id" class="btn btn-success btn-xs">编辑</a>)&nbsp;&nbsp;
+                    @Html.RoleHtmlTags((long)Lind.DDD.Authorization.Authority.Delete,
+                    @<a onclick="javascript:Modal.confirm({ msg: '你确认要删除吗？' }).on(function (e) { if (e) { location.href = '/WebUser/Delete/@entity.Id' } })" href="javascript:void(0)" class="btn btn-danger btn-xs">删除</a>)&nbsp;&nbsp;
+                   @if (entity.DataStatus == Lind.DDD.Domain.Status.Normal)
+                   {
+                       <span>@Html.RoleHtmlTags((long)Lind.DDD.Authorization.Authority.Edit, @<a href="/WebUser/Freeze/@entity.Id" class="btn btn-default btn-xs">冻结</a>)&nbsp; &nbsp;</span>
+                   }
+                   else
+                   {
+                       <span>@Html.RoleHtmlTags((long)Lind.DDD.Authorization.Authority.Edit, @<a href="/WebUser/NotFreeze/@entity.Id" class="btn btn-default btn-xs">解冻</a>)&nbsp; &nbsp;</span>
+                   }
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+@Html.GeneratePagger(total)
+<div id="zzl"></div>
+<script type="text/javascript">
+
+    $(".form_datetime_start,.form_datetime_end").datetimepicker({
+        format: "yyyy-mm-dd",
+        autoclose: true,
+        todayBtn: true,
+        todayHighlight: true,
+        showMeridian: true,
+        pickerPosition: "bottom-left",
+        language: 'zh-CN',//中文，需要引用zh-CN.js包
+        startView: 2,//月视图
+        minView: 2//日期时间选择器支持的方式：０分钟，１小时，２月
+    });
+
+    function search() {
+        var deptIdStr = '';
+        $("select[name=DeptId]").each(function () {
+            if ($(this).val() > 0)
+                deptIdStr += $(this).val() + ",";
+        });
+        var arr = deptIdStr.substring(0, deptIdStr.length - 1).split(",");
+        for (var i in arr)
+            console.log(arr[i]);
+        var roleId = $("select[name=RoleId]").val()
+        location.href = "?startDate=" + $("#startDate").val() + "&endDate=" + $("#endDate").val() + "&deptId=" + arr.pop() + "&RoleId=" + roleId;
+    }
+
+</script>

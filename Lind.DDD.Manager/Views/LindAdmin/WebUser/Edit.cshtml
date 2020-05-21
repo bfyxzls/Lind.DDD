@@ -1,0 +1,14 @@
+﻿@model WebManageUsers
+@{
+    ViewBag.Title = "编辑用户";
+}
+@Html.BindToFormMore(Model,
+@<div>
+    @Html.Action("DeptDropdownList", "WebUser", new { userid = Model.Id })
+</div>
+, i => i.LoginName
+, i => i.RealName
+, i => i.ThridUserId
+, i => i.Mobile
+, i => i.Email
+, i => i.Description)

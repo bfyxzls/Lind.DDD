@@ -1,0 +1,9 @@
+﻿@{
+    ViewBag.Title = "授权测试";
+    string requestToken = Request.QueryString["requestToken"];
+    string accessToken = Request.QueryString["accessToken"];
+
+}
+<h1>当前RequestToken:@ViewBag.requestToken </h1>
+<h1>当前AccessToken:@ViewBag.accessToken </h1>
+<a href="/oauth/Index?accessToken=@(accessToken)&redirect_uri=@Request.Url.AbsoluteUri">加载数据</a>

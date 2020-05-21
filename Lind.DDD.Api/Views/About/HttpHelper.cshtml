@@ -1,0 +1,140 @@
+﻿@{
+    ViewBag.Title = "HttpHelper";
+}
+
+<h2>对Http方法的扩展</h2>
+<script type="syntaxhighlighter" class="brush: csharp;">
+<![CDATA[
+    /// <summary>
+    /// Http相关操作
+    /// </summary>
+    public class HttpHelper
+    {
+        /// <summary>
+        /// 加工当前Uri
+        /// </summary>
+        /// <param name="requestUri"></param>
+        /// <param name="nv"></param>
+        /// <returns></returns>
+        static string GeneratorUri(string requestUri, NameValueCollection nv)
+        {
+            if (nv != null)
+            {
+                if (requestUri.IndexOf("?") > -1)
+                {
+                    requestUri += "&" + nv.ToUrl();
+                }
+                else
+                {
+                    requestUri += "?" + nv.ToUrl();
+                }
+            }
+            return requestUri;
+        }
+        /// <summary>
+        /// GET请求
+        /// </summary>
+        /// <param name="requestUri"></param>
+        /// <param name="nv"></param>
+        /// <returns></returns>
+        public static HttpResponseMessage Get(string requestUri, NameValueCollection nv = null)
+        {
+
+            var handler = new HttpClientHandler() { };
+            using (var http = new HttpClient(handler))
+            {
+                var response = http.GetAsync(GeneratorUri(requestUri, ApiValidateHelper.GenerateCipherText(nv))).Result;
+                return response;
+            }
+        }
+        /// <summary>
+        /// POST请求
+        /// </summary>
+        /// <param name="requestUri">源地址</param>
+        /// <param name="content">请求主体</param>
+        /// <param name="nv">追加到URL上的参数</param>
+        /// <returns></returns>
+        public static HttpResponseMessage Post(string requestUri, NameValueCollection nv)
+        {
+            var handler = new HttpClientHandler() { };
+            using (var http = new HttpClient(handler))
+            {
+                var body = new Dictionary<string, string>();
+                foreach (string item in nv.Keys)
+                {
+                    body.Add(item, nv[item]);
+                }
+                var response = http.PostAsync(
+                    GeneratorUri(requestUri,
+                    ApiValidateHelper.GenerateCipherText(nv, true)),
+                    new FormUrlEncodedContent(body)).Result;
+                return response;
+            }
+        }
+
+
+        /// <summary>
+        ///  以JSON形式POST，泛型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requestUri"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public static HttpResponseMessage Post<T>(string requestUri, T entity)
+        {
+            return Post(requestUri, entity.ToNameValueCollection());
+        }
+
+        /// <summary>
+        /// PUT请求
+        /// </summary>
+        /// <param name="requestUri">源地址</param>
+        /// <param name="content">请求主体</param>
+        /// <param name="nv">追加到URL上的参数</param>
+        /// <returns></returns>
+        public static HttpResponseMessage Put(string requestUri, NameValueCollection nv)
+        {
+            var handler = new HttpClientHandler() { };
+            using (var http = new HttpClient(handler))
+            {
+                var body = new Dictionary<string, string>();
+                foreach (string item in nv.Keys)
+                {
+                    body.Add(item, nv[item]);
+                }
+                var response = http.PutAsync(GeneratorUri(
+                    requestUri,
+                    ApiValidateHelper.GenerateCipherText(nv, true)),
+                    new FormUrlEncodedContent(body)).Result;
+                return response;
+            }
+        }
+        /// <summary>
+        /// 以JSON形式PUT，泛型
+        /// </summary>
+        /// <param name="requestUri"></param>
+        /// <param name="content"></param>
+        /// <returns></returns>
+        public static HttpResponseMessage Put<T>(string requestUri, T entity)
+        {
+            return Put(requestUri, entity.ToNameValueCollection());
+        }
+        /// <summary>
+        /// DELETE请求
+        /// </summary>
+        /// <param name="requestUri">源地址</param>
+        /// <param name="content">请求主体</param>
+        /// <param name="nv">追加到URL上的参数</param>
+        /// <returns></returns>
+        public static HttpResponseMessage Delete(string requestUri, NameValueCollection nv = null)
+        {
+            var handler = new HttpClientHandler() { };
+            using (var http = new HttpClient(handler))
+            {
+                var response = http.DeleteAsync(GeneratorUri(requestUri, ApiValidateHelper.GenerateCipherText(nv))).Result;
+                return response;
+            }
+        }
+    }
+    ]]>
+</script>

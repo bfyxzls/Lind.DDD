@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <title>微信支付样例-JSAPI支付</title>
+</head>
+
+<script type="text/javascript">
+
+    //调用微信JS api 支付
+    function jsApiCall() {
+        $.get("/weixin/get", new { money: 1, order: '001', openId: 'test' }, function (data) {
+            WeixinJSBridge.invoke('getBrandWCPayRequest', JSON.parse(data), function (res) {
+                WeixinJSBridge.log(res.err_msg);
+                //支付成功后，在这里跳转页面
+                if (res.err_msg == "get_brand_wcpay_request:ok") {
+                    // message: "微信支付成功!",
+                } else if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                    // message: "已取消微信支付!" 
+                }
+
+
+
+            });
+        });
+    }
+
+    function callpay() {
+        if (typeof (WeixinJSBridge) == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }
+            else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }
+        else {
+            jsApiCall();
+        }
+    }
+
+</script>
+
+<body>
+    <a href="javascript:void(0)" onclick="callpay();return false;">立即支付</a>
+</body>
+</html>

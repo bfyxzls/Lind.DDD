@@ -1,0 +1,84 @@
+﻿@model Lind.DDD.Web.Models.UserInfo
+
+@{
+    ViewBag.Title = "您只需要注册一个用户，就可以得到来自大叔的技术分享";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.UserName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UserName)
+        @Html.ValidationMessageFor(model => model.UserName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.RealName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.RealName)
+        @Html.ValidationMessageFor(model => model.RealName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Password)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TruePassword)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.TruePassword)
+        @Html.ValidationMessageFor(model => model.TruePassword)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Email)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.QQ)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.QQ)
+        @Html.ValidationMessageFor(model => model.QQ)
+    </div>
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.UserExtension.NickName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UserExtension.NickName)
+        @Html.ValidationMessageFor(model => model.UserExtension.NickName)
+    </div>
+
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.UserExtension.School)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.UserExtension.School)
+        @Html.ValidationMessageFor(model => model.UserExtension.School)
+    </div>
+    <p>
+        <button>保存</button>
+    </p>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

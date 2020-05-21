@@ -1,0 +1,20 @@
+﻿@model IEnumerable<WebDataCtrl>
+@{
+    ViewBag.Title = "数据集类型列表";
+    int totalRecord = Convert.ToInt32(ViewBag.totalRecord);
+
+}
+<form class="form-inline" novalidate="novalidate">
+    <a class="btn btn-success" href="/WebDataCtrl/Create">添加一个</a>
+</form>
+<p></p>
+@Html.BindToTable(Model, (long)(Lind.DDD.Authorization.Authority.Detail | Lind.DDD.Authorization.Authority.Edit | Lind.DDD.Authorization.Authority.Delete),
+i => i.Id,
+i => i.DataCtrlName,
+i => i.DataCtrlType,
+i => i.DataCtrlField,
+i => i.DataCtrlApi,
+i => i.DataUpdateDateTime
+)
+
+@Html.GeneratePagger(totalRecord)

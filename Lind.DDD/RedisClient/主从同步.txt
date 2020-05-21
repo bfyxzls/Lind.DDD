@@ -1,0 +1,11 @@
+﻿修改redis.conf
+对于配置从服务器，我们主要设置port,bind和slaveof这三个参数就可以了，port是端口，
+bind是从服务器的ip地址，slaveof是主服务器的地址和端口，代码如下
+--------------------------------------
+port 6380
+bind 127.0.0.1
+slaveof  127.0.0.1 6379 
+---------------------------------------
+在web.config中进行redisSection的配置
+  <RedisConfig WriteServerList="192.168.2.71:6379" ReadServerList="192.168.2.71:6379,192.168.2.71:6380" MaxWritePoolSize="60" MaxReadPoolSize="60" AutoStart="true" LocalCacheTime="180" RecordeLog="false">
+  </RedisConfig>

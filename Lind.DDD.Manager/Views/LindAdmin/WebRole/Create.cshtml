@@ -1,0 +1,127 @@
+﻿@model WebManageRoles
+@{
+    ViewBag.Title = "添加角色";
+}
+<span id="err" style="color: red; font-size: 14px;"></span>
+<form class="form-horizontal" method="post">
+    <div class="form-group">
+        <label class="col-sm-2">名称</label>
+        <div class="col-sm-10">
+            <input type="text" name="RoleName" id="RoleName" class="form-control" placeholder="名称" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2">排序</label>
+        <div class="col-sm-10">
+            <input type="text" name="SortNumber" id="SortNumber" class="form-control" placeholder="排序" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2">说明</label>
+        <div class="col-sm-10">
+            <input type="text" name="About" id="About" class="form-control" placeholder="说明" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2">部门</label>
+        <div class="col-sm-10">
+            @Html.GeneratorDeptTreeRadio()
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2">菜单</label>
+        <div class="col-sm-10">
+            @Html.GeneratorMenuTree(false, true)
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2">区域</label>
+        <div class="col-sm-10">
+            @Html.GeneratorAreaTree()
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10">
+            @Html.RoleHtmlTags((long)Lind.DDD.Authorization.Authority.Create, @<input type="button" value="提交" id="save" class="btn btn-default btn-primary" />)
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dept_Tree").bind("loaded.jstree", function (e, data) {
+            // data.inst.open_all(-1); // -1默认全部展开节点 
+            data.inst.close_all();
+        }).jstree({
+
+            "plugins": ["themes", "html_data"]
+        });
+
+        $("#menu_Tree").bind("loaded.jstree", function (e, data) {
+            // data.inst.open_all(-1); // -1默认全部展开节点 
+            data.inst.close_all();
+        }).jstree({
+            "plugins": ["themes", "html_data"]
+        });
+
+        $("#area_Tree").bind("loaded.jstree", function (e, data) {
+            //data.inst.open_all(-1); // -1默认全部展开节点 
+            data.inst.close_all();
+        }).jstree({
+            "plugins": ["themes", "html_data"]
+        });
+    });
+
+    if ($("#area-1").prop("checked"))
+        $("input[type=checkbox][name=area][id!=area-1][id!=area0]").attr("disabled", "disabled");
+    else
+        $("input[type=checkbox][name=area][id!=area-1][id!=area0]").removeAttr("disabled");
+
+
+    //选择全国后，其它不能选择
+    $("#area-1").click(function () {
+        if ($(this).prop("checked")) {
+            $("input[type=checkbox][name=area][id!=area-1][id!=area0]").attr("disabled", "disabled");
+        }
+        else {
+            $("input[type=checkbox][name=area][id!=area-1][id!=area0]").removeAttr("disabled");
+
+        }
+    });
+
+    $("#save").click(function () {
+        var roleName = $("#RoleName").val();
+        var sortNumber = $("#SortNumber").val();
+        var about = $("#About").val();
+        var departmentId = $("input[name=dept]:checked").val();
+        var menuArr = '';
+        var area = '';
+        $("input[name=menu][type=checkbox]:checked").each(function () {
+            var auth = 0;
+            var self = this;
+            $(this).nextAll("span").find("[name^=" + $(self).attr("id") + "]:checked").each(function () {
+                auth |= $(this).val();
+            });
+            menuArr += $(this).val() + '|' + auth + ',';
+        });
+
+        $("input[name=area][type=checkbox]:checked").each(function () {
+            area += $(this).val() + ',';
+        });
+
+        $.ajaxLoading({
+            url: "/WebRole/SaveCreate",
+            type: "POST",
+            data: { id: "0", roleName: roleName, sortNumber: sortNumber, about: about, departmentId: departmentId, menuArr: menuArr, area: area },
+            success: function (data) {
+                if (data.status == 1)
+                    location.href = "/WebRole/Index";
+                else
+                    $("#err").html(data.msg);
+            }
+        });
+    });
+
+</script>
+
+

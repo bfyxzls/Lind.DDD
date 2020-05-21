@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Upload";
+}
+@model string
+<h1>上传文件</h1>
+<h3>文件路径:<span><a href="@ViewBag.Url" target="_blank">@ViewBag.Url</a> </span></h3>
+<form method="post" enctype="multipart/form-data" action="http://@(Request.Url.Authority)/api/upload">
+    <input type="file" name="file1" />
+    <button>上传</button>
+</form>

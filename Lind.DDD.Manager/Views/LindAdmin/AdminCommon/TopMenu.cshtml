@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Lind.DDD.Manager.Models.WebManageMenus>
+
+@{
+    ViewBag.Title = "TopMenu";
+    Layout = null;
+}
+<ul class="nav nav-pills">
+
+    @foreach (var item in Model)
+    {
+        if (item.Sons != null && item.Sons.Count > 0)
+        {
+                
+        <li class="dropdown">
+            <a data-submenu="" data-toggle="dropdown" tabindex="0">@item.Name<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                @foreach (var sub in item.Sons)
+                {
+                    if (sub.Sons != null && sub.Sons.Count > 0)
+                    {
+
+                    <li class="dropdown-submenu">
+                        <a tabindex="0">@sub.Name</a>
+                        <ul class="dropdown-menu">
+                            @foreach (var inner in sub.Sons)
+                            {
+
+                                if (inner.Sons != null && inner.Sons.Count > 0)
+                                {
+
+                                <li class="dropdown-submenu">
+                                    <a tabindex="0">@inner.Name</a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var inners in inner.Sons)
+                                        {
+                                            <li>
+                                                <a href="@inners.LinkUrl">@inners.Name</a>
+                                            </li>
+                               
+                                        }
+                                    </ul>
+
+                                </li>
+                                }
+                                else
+                                {
+
+                                <li>
+                                    <a href="@inner.LinkUrl">@inner.Name</a>
+                                </li>
+                               
+                                }
+                            }
+
+                        </ul>
+                    </li>
+ 
+                    }
+
+                    else
+                    {
+                    <li><a href="@sub.LinkUrl">@sub.Name</a></li>
+                    }
+                }
+            </ul>
+        </li>
+        }
+        else
+        {
+        <li><a href="@item.LinkUrl">@item.Name</a></li>
+        }
+    }
+</ul>
+
+

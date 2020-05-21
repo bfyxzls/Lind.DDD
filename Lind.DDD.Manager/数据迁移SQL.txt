@@ -1,0 +1,37 @@
+﻿--基础表的数据迁移，需要把本地框架表内容复制到服务器临时数据库，然后把主库对应的表删除，再添加即可
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebManageRoles_WebManageMenus_R 
+SELECT * INTO [Tsingda.Cloud].dbo.WebManageRoles_WebManageMenus_R FROM [Tsingda.CloudBack].dbo.WebManageRoles_WebManageMenus_R 
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebManageRoles_WebManageUsers_R 
+SELECT * INTO [Tsingda.Cloud].dbo.WebManageRoles_WebManageUsers_R FROM [Tsingda.CloudBack].dbo.WebManageRoles_WebManageUsers_R 
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebManageRoles_WebManageUsers_R 
+SELECT * INTO [Tsingda.Cloud].dbo.WebDepartments_WebManageUsers_R FROM [Tsingda.CloudBack].dbo.WebManageRoles_WebManageUsers_R 
+
+
+
+DROP TABLE [Tsingda.CloudBack].dbo.__MigrationHistory 
+SELECT * INTO [Tsingda.Cloud].dbo.__MigrationHistory FROM [Tsingda.CloudBack].dbo.__MigrationHistory 
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebDataSettings 
+SELECT * INTO [Tsingda.Cloud].dbo.WebDataSettings FROM [Tsingda.CloudBack].dbo.WebDataSettings 
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebDataCtrls 
+SELECT * INTO [Tsingda.Cloud].dbo.WebDataCtrls FROM [Tsingda.CloudBack].dbo.WebDataCtrls 
+
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebManageMenus 
+SELECT * INTO [Tsingda.Cloud].dbo.WebManageMenus FROM [Tsingda.CloudBack].dbo.WebManageMenus 
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebManageRoles 
+SELECT * INTO [Tsingda.Cloud].dbo.WebManageRoles FROM [Tsingda.CloudBack].dbo.WebManageRoles 
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebManageUsers 
+SELECT * INTO [Tsingda.Cloud].dbo.WebManageUsers FROM [Tsingda.CloudBack].dbo.WebManageUsers 
+
+DROP TABLE [Tsingda.CloudBack].dbo.WebDepartments 
+SELECT * INTO [Tsingda.Cloud].dbo.WebDepartments FROM [Tsingda.CloudBack].dbo.WebDepartments 
+
+
+

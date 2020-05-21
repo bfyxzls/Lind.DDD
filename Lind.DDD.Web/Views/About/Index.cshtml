@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "主要技术使用说明";
+}
+@model IEnumerable<Lind.DDD.Web.Controllers.AboutInfo>
+
+<h3>测试用户：guest，密码：guest</h3>
+<h2>Lind.DDD框架功能点目录</h2>
+<style>
+    .gridtable span {
+        color: red;
+    }
+
+    .gridtable b {
+        color: #179a00;
+        font-weight: 100;
+    }
+</style>
+<script>
+    $(function () {
+        $(".gridtable tr:even td").attr("style", "background:#f0f0f0");
+        $(".gridtable tr:odd td").attr("style", "background:#fff");
+    });
+</script>
+<table class="gridtable">
+    <tr>
+        <th></th>
+        <th>功能模块</th>
+        <th>所在项目</th>
+        <th>所在具体路径</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><i>@item.Id</i></td>
+            <td>@Html.Raw(item.Function)</td>
+            <td>@item.Project</td>
+            <td>@Html.Raw(item.Detail)</td>
+        </tr>
+    }
+</table>
+

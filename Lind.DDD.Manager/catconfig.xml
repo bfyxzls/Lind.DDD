@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<doc>
+  <domain id="domain5" enabled="true" />
+  <servers>
+    <!--<server ip="127.0.0.1" port="2280" />-->
+    <server ip="192.168.2.16" port="2280" webport="8080" />
+  </servers>
+</doc>

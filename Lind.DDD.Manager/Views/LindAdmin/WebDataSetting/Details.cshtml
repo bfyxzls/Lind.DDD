@@ -1,0 +1,27 @@
+﻿@model WebDataSetting
+
+@{
+    ViewBag.Title = "数据集详情";
+}
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="RoleId" class="col-sm-3 control-label">角色</label><div class="col-sm-9">
+            <p class="form-control-static" style="border-bottom: 1px dashed">@Model.WebManageRoles.RoleName</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="WebDataCtrlId" class="col-sm-3 control-label">类型</label><div class="col-sm-9">
+            <p class="form-control-static" style="border-bottom: 1px dashed">@Model.WebDataCtrl.DataCtrlName</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="DepartmentId" class="col-sm-3 control-label">类型字段</label><div class="col-sm-9">
+            <p class="form-control-static" style="border-bottom: 1px dashed"><span>@Model.WebDataCtrl.DataCtrlType</span>-><span>@Model.WebDataCtrl.DataCtrlField</span></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ObjectIdArr" style="word-break: break-all;" class="col-sm-3 control-label">结果集合</label><div class="col-sm-9">
+            <p class="form-control-static" style="border-bottom: 1px dashed">@Model.ObjectNameArr</p>
+        </div>
+    </div>
+</form>

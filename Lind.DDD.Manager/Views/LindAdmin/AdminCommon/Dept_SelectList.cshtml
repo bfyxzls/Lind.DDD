@@ -1,0 +1,30 @@
+﻿@{
+    List<SelectListItem> deptList = ViewBag.DeptList as List<SelectListItem>;
+    List<SelectListItem> roleList = ViewBag.RoleList as List<SelectListItem>;
+}
+<span id="Dept_Role_View">
+    <div class="form-group">
+        <label>部门</label>
+        @Html.Raw(ViewBag.DeptStr)
+    </div>
+</span>
+<script>
+    $(function () {
+        $("select[name=DeptId]").change(function () {
+            var deptId = $(this).val();
+            if (deptId == "0" && $(this).prev("select[name=DeptId]").val() != undefined) {//如果本级为“请选择”当前ID则使用它的上级ID
+                deptId = $(this).prev("select[name=DeptId]").val();
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "/AdminCommon/Dept_SelectList",
+                data: { deptId: deptId },
+                success: function (data) {
+                    $("#Dept_Role_View").html(data);
+                }
+            });
+        });
+    });
+</script>
+

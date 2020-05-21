@@ -1,0 +1,40 @@
+﻿@{
+    var list = ViewBag.chkList as IEnumerable<SelectListItem>;
+}
+<div class="form-group">
+    <label class="col-sm-2 control-label">数据集类型</label>
+    <div class="col-sm-10">
+        @Html.DropDownList("WebDataCtrlId", ViewBag.sl as IEnumerable<SelectListItem>)
+    </div>
+</div>
+<div class="form-group">
+    <label class="col-sm-2 control-label">选择目标值</label>
+    <div class="col-sm-10">
+        @if (list.Count() > 0)
+        {
+            @Html.CheckBox("ObjectIdArr", list, ViewBag.selList as IEnumerable<string>)
+            <input type="hidden" name="ObjectNameArr" id="ObjectNameArr" />
+        }
+        else
+        {
+            <span style="color: red;">本数据集不提供修改功能,或者获取数据出现问题！</span>
+        }
+    </div>
+</div>
+<script>
+    $(function () {
+        $("input[name=ObjectIdArr]").click(function () {
+            $("#ObjectNameArr").val($("#ObjectNameArr").val() + $(this).next("label").text() + ",");
+        });
+        $("select[name=WebDataCtrlId]").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "/WebDataSetting/Dept_DataSet",
+                data: { dataSetTypeId: $(this).val() },
+                success: function (data) {
+                    $("#Dept_DataSetView").html(data);
+                }
+            });
+        });
+    });
+</script>

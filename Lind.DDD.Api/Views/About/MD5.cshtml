@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "MD5";
+}
+
+<h2>加密原则及生产CipherText密文
+</h2>
+<script type="syntaxhighlighter" class="brush: csharp;">
+<![CDATA[
+            #region 验证算法
+
+            var keys = new List<string>();
+            foreach (string param in coll.Keys)
+            {
+                if (!string.IsNullOrEmpty(param))
+                {
+                    keys.Add(param.ToLower());
+                }
+
+            }
+            keys.Sort();
+            foreach (string p in keys)
+            {
+                if (p != ApiValidateHelper.CipherText)
+                {
+                    if (!string.IsNullOrEmpty(coll[p]))
+                    {
+                        paramStr.Append(coll[p]);
+                    }
+
+                }
+            }
+            paramStr.Append(DateTime.Now.ToUniversalTime().ToString("yyyyMMddHH"));
+            paramStr.Append(config.PassKey);
+            #endregion
+    ]]>
+</script>

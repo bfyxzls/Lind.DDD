@@ -1,0 +1,12 @@
+﻿@model Lind.DDD.Domain.WebAuthorityCommands
+
+@{
+    ViewBag.Title = "权限按钮详细";
+}
+@Html.BindToDetail(Model
+, i => i.Flag
+, i => i.Name
+, i => i.ActionName
+, i => i.ClassName
+, i => i.Feature
+, i => i.DataCreateDateTime)

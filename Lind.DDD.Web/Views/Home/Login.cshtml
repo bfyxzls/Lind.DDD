@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "登录中心";
+}
+
+@Html.ValidationSummary(true)
+<form class="form-horizontal" role="form" method="post">
+    <div class="form-group">
+        <input type="hidden" value="@ViewBag.returnUrl" name="returnUrl"/>
+        <label class="col-sm-2 control-label">
+            用户：   
+        </label>
+        <div class="col-sm-10">
+            <input type="text" name="username" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">
+            密码：
+        </label>
+        <div class="col-sm-10">
+            <input type="password" name="password" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button>登录</button>
+            <a href="/Home/Register" class="btn btn-success">注册</a>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,13 @@
+﻿@model Lind.DDD.Domain.WebAuthorityCommands
+
+@{
+    ViewBag.Title = "编辑权限按钮";
+}
+@Html.BindToFormMore(Model, (long)Lind.DDD.Authorization.Authority.Edit,
+@<div class="form-group">
+    <label class="col-sm-2">特性</label>
+    <div class="col-sm-10">
+        @Html.DropDownListEnumFor("Feature", typeof(Lind.DDD.Domain.WebAuthorityCommandFeature), Model.Feature.GetHashCode().ToString(), false)
+    </div>
+</div>
+, i => i.Name, i => i.ActionName, i => i.ClassName)

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "修改拥有者";
+}
+
+<form class="form-horizontal" method="post">
+    <div class="form-group">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10">
+            要操作的数据表:<span style="color: red">@ViewBag.Name</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2" for="oldValue">原值</label>
+        <div class="col-sm-10">
+            <input type="text" name="oldValue" id="oldValue" class="form-control" placeholder="原来拥有者ID" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2" for="newValue">新值</label>
+        <div class="col-sm-10">
+            <input type="text" name="newValue" id="newValue" class="form-control" placeholder="更新拥有者ID" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-10">
+            <input type="submit" value="提交" id="save" class="btn btn-default btn-primary" />
+        </div>
+    </div>
+</form>

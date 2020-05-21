@@ -1,0 +1,127 @@
+﻿@{
+    ViewBag.Title = "KV";
+}
+
+<h2>对于K/V的方法扩展</h2>
+<script type="syntaxhighlighter" class="brush: csharp;">
+<![CDATA[
+
+        /// <summary>
+        /// 将对象转为键值对象（完全支持最复杂的类型）
+        /// 作者：仓储大叔
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static IDictionary<string, string> ToDictionary(this object obj)
+        {
+            try
+            {
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                Dictionary<string, string> prefix = new Dictionary<string, string>();
+                foreach (var p in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+                {
+                    ReGenerate(obj, p, prefix, dic, null);
+                    prefix.Clear();
+                }
+                return dic;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// 转成K/V
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static NameValueCollection ToNameValueCollection(this object obj)
+        {
+            var nv = new NameValueCollection();
+            var dic = obj.ToDictionary();
+            foreach (var item in dic.Keys)
+            {
+                nv.Add(item, dic[item]);
+            }
+            return nv;
+        }
+
+
+        /// <summary>
+        /// 递归找子孙
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="dic"></param>
+        static void ReGenerate(object obj, PropertyInfo p, Dictionary<string, string> prefix, Dictionary<string, string> dic, Tuple<string, int> arrIndex)
+        {
+            if (obj != null)
+            {
+                if (p.PropertyType.IsClass && p.PropertyType != typeof(string))
+                {
+
+                    var sub = p.GetValue(obj);
+                    if (sub != null)
+                    {
+                        if (ListNameArr.Contains(p.PropertyType.Name))//集合
+                        {
+                            var innerList = sub as IEnumerable;
+                            int j = 0;
+                            prefix.Add(p.Name, p.Name);
+                            foreach (var listSub in innerList)
+                            {
+                                foreach (var property in listSub.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                                   .Where(i => i.Name != "Capacity" && i.Name != "Count"))
+                                {
+                                    ReGenerate(listSub, property, prefix, dic, new Tuple<string, int>(p.Name, j));
+                                }
+                                j++;
+
+                            }
+                            prefix.Remove(p.Name);//用完清除
+                        }
+                        else//实体
+                        {
+                            if (!prefix.ContainsKey(p.Name) && sub != null)
+                                prefix.Add(p.Name, p.Name);
+
+                            foreach (var property in p.PropertyType.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+                            {
+                                ReGenerate(sub, property, prefix, dic, arrIndex);
+                            }
+                            prefix.Remove(p.Name);//用完清除
+                        }
+                    }
+                }
+                else//简单属性
+                {
+                    if (p.GetValue(obj) != null)
+                        if (prefix.Count > 0)
+                        {
+                            if (arrIndex != null)
+                            {
+                                foreach (var key in prefix.Keys)
+                                {
+                                    if (key == arrIndex.Item1)
+                                    {
+
+                                        prefix[key] = key + "[" + arrIndex.Item2 + "]";
+                                        break;
+                                    }
+                                }
+                            }
+                            dic.Add(string.Join(".", prefix.Values) + "." + p.Name, p.GetValue(obj).ToString());
+                        }
+                        else
+                            dic.Add(p.Name, p.GetValue(obj).ToString());
+
+                }
+
+
+            }
+        }
+
+    ]]>
+</script>

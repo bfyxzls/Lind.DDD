@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "拥有者数据表管理";
+}
+@model IEnumerable<string>
+<p>
+    <a href="/Owner/Edit?name=" class="btn btn-primary">更新所有表的拥有者</a>
+</p>
+<table>
+    <tr>
+        <td>表名</td>
+        <td></td>
+    </tr>
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var entity in Model)
+        { 
+        <tr>
+            <td>@entity</td>
+            <td><a href="/Owner/Edit?name=@entity" class="btn btn-primary btn-xs">修改拥有者</a></td>
+        </tr>
+        }
+    }
+</table>

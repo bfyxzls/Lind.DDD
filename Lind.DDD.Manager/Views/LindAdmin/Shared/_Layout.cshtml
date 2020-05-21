@@ -1,0 +1,225 @@
+﻿@{
+    Layout = "~/Views/LindAdmin/Shared/_LayoutInit.cshtml";
+}
+@RenderSection("Scripts", required: false)
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header" style="margin: 5px;">
+        @if (System.Configuration.ConfigurationManager.AppSettings["PageHeadLogo"] != null)
+        {
+            <img src="@(System.Configuration.ConfigurationManager.AppSettings["PageHeadLogo"])">
+        }
+        <span style="font-size: 30px; font-family: 微软雅黑;">@(System.Configuration.ConfigurationManager.AppSettings["PageHead"] ?? "后台管理系统")</span>
+    </div>
+    <ul class="nav navbar-nav navbar-right" style="margin: 5px;">
+        <li>
+            <a class="navbar-link">【当前用户：<span style="color: red;">@(Lind.DDD.Authorization.CurrentUser.UserName)</span>】</a>
+        </li>
+        <li><a href="/" class="navbar-link">后台首页</a></li>
+        <li><a href="@Url.Action("ModifyPassword", "AdminCommon")" class="navbar-link">修改密码</a></li>
+        <li><a href="@Url.Action("LogOut", "AdminCommon")" class="navbar-link">登出</a></li>
+    </ul>
+</nav>
+<ol class="breadcrumb">
+    @Html.BreadCrumb()
+</ol>
+<div class="row">
+    <div class="col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                菜单导航
+            </div>
+            <div class="panel-body">
+                @Html.Action("TopMenu", "AdminCommon")
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @ViewBag.Title
+            </div>
+            <div class="panel-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default" style="min-height: 20px;">
+    <div class="container">
+        <ins>@(System.Configuration.ConfigurationManager.AppSettings["PageFoot"] ?? "仓储大叔对技术的追求永不止步！")</ins>
+    </div>
+</nav>
+
+<!-- system modal start -->
+<div id="ycf-alert" class="modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i>[Title]</h5>
+            </div>
+            <div class="modal-body small">
+                <p>[Message]</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+                <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- system modal end -->
+<div id="ycf-box" class="modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i>[Title]</h5>
+            </div>
+            <div class="modal-body small">
+                <p>[Message]</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ecmascript">
+
+    //bootstrape的样式加载
+    function bootstrapeCss() {
+        //按钮
+        $("input[type=submit]").addClass("btn btn-primary");
+        $("button").addClass("btn btn-primary");
+        $("label").addClass("control-label");
+        $("table").addClass("table table-hover table-bordered table-striped");
+        $("input[type=text],input[type=password]").addClass("form-control");
+    }
+
+    //复写模式窗口
+    $(function () {
+
+        //级联菜单支持IOS系统
+        $(".dropdown a").click(function (e) {
+        });
+
+        //高亮导航
+        var o = $(".nav").find("li").find("a[href$='@Request.Url.AbsolutePath']");
+        o.closest("li").addClass("active").siblings().removeClass("active");
+        o.parents(".dropdown").addClass("active").siblings().removeClass("active");
+        bootstrapeCss();
+    });
+    //复写模式窗口
+    $(function () {
+        window.Modal = function () {
+            var reg = new RegExp("\\[([^\\[\\]]*?)\\]", 'igm');
+            var alr = $("#ycf-alert");
+            var ahtml = alr.html();
+            var box = $("#ycf-box");
+            var boxhtml = box.html();
+
+            var _alert = function (options) {
+                alr.html(ahtml);    // 复原
+                alr.find('.ok').removeClass('btn-success').addClass('btn-primary');
+                alr.find('.cancel').hide();
+                _dialog(options);
+
+                return {
+                    on: function (callback) {
+                        if (callback && callback instanceof Function) {
+                            alr.find('.ok').click(function () { callback(true) });
+                        }
+                    }
+                };
+            };
+
+            var _confirm = function (options) {
+                alr.html(ahtml); // 复原
+                alr.find('.ok').removeClass('btn-primary').addClass('btn-success');
+                alr.find('.cancel').show();
+                _dialog(options);
+
+                return {
+                    on: function (callback) {
+                        if (callback && callback instanceof Function) {
+                            alr.find('.ok').click(function () { callback(true) });
+                            alr.find('.cancel').click(function () { callback(false) });
+                        }
+                    }
+                };
+            };
+            var _box = function (options) {
+                var ops = {
+                    msg: "提示内容",
+                    title: "操作提示"
+                };
+                $.extend(ops, options);
+
+                var html = boxhtml.replace(reg, function (node, key) {
+                    return {
+                        Title: ops.title,
+                        Message: ops.msg
+                    }[key];
+                });
+                box.modal({
+                    width: 500,
+                    backdrop: 'static'
+                });
+            };
+
+            var _dialog = function (options) {
+                var ops = {
+                    msg: "提示内容",
+                    title: "操作提示",
+                    btnok: "确定",
+                    btncl: "取消"
+                };
+
+                $.extend(ops, options);
+
+                var html = alr.html().replace(reg, function (node, key) {
+                    return {
+                        Title: ops.title,
+                        Message: ops.msg,
+                        BtnOk: ops.btnok,
+                        BtnCancel: ops.btncl
+                    }[key];
+                });
+
+                alr.html(html);
+                alr.modal({
+                    width: 500,
+                    backdrop: 'static'
+                });
+            }
+
+            return {
+                alert: _alert,
+                confirm: _confirm,
+                box: _box
+            }
+
+        }();
+    });
+
+    // 四个选项都是可选参数
+    //Modal.alert(
+    //    {
+    //        msg: '内容',
+    //        title: '标题',
+    //        btnok: '确定',
+    //        btncl: '取消'
+    //    });
+
+    // 如需增加回调函数，后面直接加 .on( function(e){} );
+    // 点击“确定” e: true
+    // 点击“取消” e: false
+    //Modal.confirm(
+    //    {
+    //        msg: "是否删除角色？"
+    //    })
+    //    .on(function (e) {
+    //        alert("返回结果：" + e);
+    //    });
+</script>

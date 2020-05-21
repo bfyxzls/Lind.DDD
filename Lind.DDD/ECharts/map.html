@@ -1,0 +1,219 @@
+﻿a<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>echarts图形插件使用</title>
+    <script src="http://files.cnblogs.com/files/lori/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="http://files.cnblogs.com/files/lori/echarts-all.js"></script>
+    <style>
+        body {
+            background: #404a59;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main"></div>
+    <script src="map.js"></script>
+    <script type="text/javascript">
+        $("#main").attr("style", "height:" + parseInt(window.innerHeight - 20) + "px");
+        /*
+        设计思想：
+        根据客户端传所传县的数量－＞标点
+        */
+        //所有源坐标
+        var source = {};
+        //在线坐标
+        var onLine = [];
+
+        for (var i in mapObj) {
+            onLine.push(i);
+            source[i] = mapObj[i];
+        }
+
+        //地图上显示的点
+        var provinceMap = [
+               { name: '天津', value: Math.round(Math.random() * 1000) },
+               { name: '上海', value: Math.round(Math.random() * 1000) },
+               { name: '重庆', value: Math.round(Math.random() * 1000) },
+               { name: '河北', value: Math.round(Math.random() * 1000) },
+               { name: '河南', value: Math.round(Math.random() * 1000) },
+               { name: '云南', value: Math.round(Math.random() * 1000) },
+               { name: '辽宁', value: Math.round(Math.random() * 1000) },
+               { name: '黑龙江', value: Math.round(Math.random() * 1000) },
+               { name: '湖南', value: Math.round(Math.random() * 1000) },
+               { name: '安徽', value: Math.round(Math.random() * 1000) },
+               { name: '山东', value: Math.round(Math.random() * 1000) },
+               { name: '新疆', value: Math.round(Math.random() * 1000) },
+               { name: '江苏', value: Math.round(Math.random() * 1000) },
+               { name: '浙江', value: Math.round(Math.random() * 1000) },
+               { name: '江西', value: Math.round(Math.random() * 1000) },
+               { name: '湖北', value: Math.round(Math.random() * 1000) },
+               { name: '广西', value: Math.round(Math.random() * 1000) },
+               { name: '甘肃', value: Math.round(Math.random() * 1000) },
+               { name: '山西', value: Math.round(Math.random() * 1000) },
+               { name: '内蒙古', value: Math.round(Math.random() * 1000) },
+               { name: '陕西', value: Math.round(Math.random() * 1000) },
+               { name: '吉林', value: Math.round(Math.random() * 1000) },
+               { name: '福建', value: Math.round(Math.random() * 1000) },
+               { name: '贵州', value: Math.round(Math.random() * 1000) },
+               { name: '广东', value: Math.round(Math.random() * 1000) },
+               { name: '青海', value: Math.round(Math.random() * 1000) },
+               { name: '西藏', value: Math.round(Math.random() * 1000) },
+               { name: '四川', value: Math.round(Math.random() * 1000) },
+               { name: '宁夏', value: Math.round(Math.random() * 1000) },
+               { name: '海南', value: Math.round(Math.random() * 1000) },
+               { name: '台湾', value: Math.round(Math.random() * 1000) },
+               { name: '香港', value: Math.round(Math.random() * 1000) },
+               { name: '澳门', value: Math.round(Math.random() * 1000) }
+        ];
+
+        //初始化地图容器
+        var myChart = echarts.init(document.getElementById('main'));
+        var bgColor = '#000';
+        var selectbgColor = '#333';
+        var bgBorderColor = 'lightblue';
+        var fontColor = '#eee';
+        var onColor = '#ECFF7E';
+        var offColor = '#0276DD';
+        var iconSize = 4;
+        var option = {};
+        function mapRun(_index) {
+            var index = _index;//定义一个基数
+            $.get("map.js", function (data) {
+
+                option = {
+
+                    title: {
+                        text: '大叔点亮中国IT业',
+                        subtext: 'Lind.Zhang',
+                        sublink: 'http://www.cnblogs.com/lori',
+                        x: 'center',
+                        y: 'top',
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    },
+                    legend: {
+                        x: 'left',
+                        y: 'top',
+                        data: ['在线学生', '离线学生'],//在线和离线对应的是series的名字
+                        selectedMode: false,//选中悬浮
+
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    }, series: [
+                        //默认
+                        {
+                            name: 'default',
+                            type: 'map',
+                            mapType: 'china',
+                            data: provinceMap,
+
+                            itemStyle: {
+                                normal: {
+                                    color: bgColor,
+                                    borderColor: "#eee",
+                                    label: {
+                                        show: true,
+                                        textStyle: {
+                                            color: "#fff"
+                                        }
+                                    }
+                                }, emphasis: { color: "rgba(128, 128, 128, 0.5)" }
+                            },
+                        },
+                         //离线
+                {
+                    name: '离线学生',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: true,
+                    selectedMode: false,//选中悬浮
+                    itemStyle: {
+                        normal: {
+                            color: offColor
+                        }
+                    },
+                    data: [],
+                    markPoint: {//动态标记
+                        large: true,
+                        symbolSize: iconSize,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: iconSize,
+                                shadowColor: offColor,
+                                color: offColor
+                            }
+                        },
+                        data: []
+                    }
+                  , geoCoord: source
+                },
+                        //在线
+                {
+                    name: '在线学生',
+                    type: 'map',
+                    mapType: 'china',
+                    roam: true,
+                    selectedMode: false,//选中悬浮           
+                    itemStyle: {
+                        normal: { color: onColor }
+                    },
+                    data: [],
+                    markPoint: {//动态标记
+                        large: true,//这个选项，悬浮自动失效
+                        symbolSize: iconSize,
+                        itemStyle: {
+                            normal: {
+                                shadowBlur: iconSize,
+                                shadowColor: 'rgba(37, 140, 249, 0.8)',
+                                color: onColor
+                            }
+                        },
+                        data: []
+                    },
+                    geoCoord: source
+                }]
+                }
+                var c = 0;
+                for (var i in onLine) {
+                    c += 1;
+                    //if (c % 3 == 0)
+                    //    option.series[1].markPoint.data.push({ name: onLine[i] });
+                    //else
+                    //    option.series[2].markPoint.data.push({ name: onLine[i] });
+                }
+                myChart.setOption(option);
+
+            });
+        }
+        mapRun(1);
+        //周期调用刷新数据
+        setInterval(function () {
+
+            //动态添加并标记点（geoCoord动态添加）
+            myChart.addMarkPoint(1, {
+                data: [{
+                    name: "93.00_43.60", geoCoord: [longitude = 93.00, latitude = 43.60]
+                }]
+            });
+
+            myChart.addMarkPoint(1, {
+                data: [{ name: "天津" }]
+            });
+
+            //离线，添加点
+            myChart.addMarkPoint(1, {
+                data: [{ name: "天津" }]
+            });
+
+            //删除
+            myChart.delMarkPoint(2, "北京");
+
+            myChart.refresh();//实时更新到地图
+        }, 5000);
+
+    </script>
+</body>

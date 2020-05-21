@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Lind.DDD.Web.Models.Product>
+
+@{
+    ViewBag.Title = "大叔商城，对技术的追求永不止步！";
+}
+<style>
+    th, td {
+        line-height: 50px;
+    }
+</style>
+<table class="gridtable">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>原价</th>
+        <th>@Html.DisplayNameFor(model => model.Discount)</th>
+        <th>现价</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+        分类
+         <th style="width: 130px;"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="@(item.Discount < 100 ? "success" : "")">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td><span style="color: green">@item.Price</span></td>
+            <td>
+                @(item.Discount / 10m)
+            </td>
+            <td>@(item.Price * (item.Discount / 100m))</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+            <td>
+                @Html.ActionLink("购买", "Do", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" }) <a class="btn btn-warning btn-sm" title="购物车" href="javascript:void(0)"  onclick="addCart('@item.Id','@item.Name')">购物车</a>
+            </td>
+        </tr>
+    }
+
+</table>
