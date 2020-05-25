@@ -77,7 +77,6 @@ namespace Lind.DDD.Domain
         /// </summary>
         [NotMapped]
         [XmlIgnore]
-        [MongoDB.Bson.Serialization.Attributes.BsonIgnore]
         public bool IsValid
         {
             get
