@@ -62,6 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbCommandInterceptorExtensions.cs" />
+    <Compile Include="DistributedReadWriteForEF\DistributedReadWriteManager.cs" />
+    <Compile Include="DistributedReadWriteForEF\DistributedReadWriteSection.cs" />
+    <Compile Include="DistributedReadWriteForEF\DistributedReadWriteSectionHandler.cs" />
+    <Compile Include="DistributedReadWriteForEF\ReadWriteCommandInterceptor.cs" />
     <Compile Include="EFRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

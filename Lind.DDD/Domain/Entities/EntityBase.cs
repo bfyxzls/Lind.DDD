@@ -1,5 +1,4 @@
-﻿using Dapper.Contrib.Extensions;
-using Lind.DDD.EntityValidation;
+﻿using Lind.DDD.EntityValidation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,7 +77,6 @@ namespace Lind.DDD.Domain
         /// </summary>
         [NotMapped]
         [XmlIgnore]
-        [Computed]
         [MongoDB.Bson.Serialization.Attributes.BsonIgnore]
         public bool IsValid
         {

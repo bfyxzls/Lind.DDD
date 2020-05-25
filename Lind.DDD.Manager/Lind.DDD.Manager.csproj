@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{54D3E7B3-A5B2-4E2B-8A1A-2A3F38D818AE}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lind.DDD.Manager</RootNamespace>
@@ -55,18 +55,6 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Lind.DDD, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dll\Lind.DDD.dll</HintPath>
-    </Reference>
-    <Reference Include="Lind.DDD.Repositories.EF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dll\Lind.DDD.Repositories.EF.dll</HintPath>
-    </Reference>
-    <Reference Include="Lind.DDD.Repositories.Xml, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dll\Lind.DDD.Repositories.Xml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=736440c9b414ea16, processorArchitecture=MSIL">
       <HintPath>..\packages\CodeContracts.Unofficial.1.0.0.0\lib\Net35\Microsoft.Contracts.dll</HintPath>
@@ -242,9 +230,6 @@
     <Compile Include="ViewModels\ModifyPasswordModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dll\Lind.DDD.dll" />
-    <Content Include="Dll\Lind.DDD.Repositories.EF.dll" />
-    <Content Include="Dll\Lind.DDD.Repositories.Xml.dll" />
     <Content Include="Migrations\change.sql" />
     <Content Include="Migrations\数据迁移.sql" />
     <Content Include="Scripts\jquery-2.0.0.js" />
@@ -413,6 +398,7 @@
     <Content Include="Views\LindAdmin\AdminCommon\LogOn.cshtml" />
     <Content Include="Views\LindAdmin\Shared\_LayoutInit.cshtml" />
     <None Include="Properties\PublishProfiles\后台框架.pubxml" />
+    <Content Include="readme.md" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
@@ -471,6 +457,20 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lind.DDD.Repositories.EF\Lind.DDD.Repositories.EF.csproj">
+      <Project>{60edea23-947c-4fef-a97c-2a324ed133c0}</Project>
+      <Name>Lind.DDD.Repositories.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lind.DDD.Repositories.Xml\Lind.DDD.Repositories.Xml.csproj">
+      <Project>{a1d24335-26db-439e-a08f-d101e9e7b529}</Project>
+      <Name>Lind.DDD.Repositories.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lind.DDD\Lind.DDD.csproj">
+      <Project>{26b8bb75-982f-46d1-9106-1af0a2e48726}</Project>
+      <Name>Lind.DDD</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
